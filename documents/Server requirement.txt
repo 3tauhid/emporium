@@ -1,0 +1,6 @@
+PHP version: 8.1
+Database: MySQL
+Database collation: utf8mb4_unicode_ci
+
+Optional but recommended:
+Command Line Interface (CLI) to run important commands like "php artisan optimize".
