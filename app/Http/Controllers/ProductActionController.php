@@ -29,7 +29,7 @@ class ProductActionController extends Controller
     {
         $request->validate([
             'product_id' => ['required'],
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:191'],
         ]);
 
         $productId = $request->input('product_id');

@@ -20,7 +20,7 @@ class CartItemController extends Controller
     {
         $request->validate([
             'productSellerID' => ['required'],
-            'quantity' => ['required', 'integer', 'max:255'],
+            'quantity' => ['required', 'integer', 'max:191'],
         ]);
 
         $productSellerID = $request->input('productSellerID');
