@@ -15,6 +15,7 @@ class CreateUserImagesTable extends Migration
     {
         Schema::create('user_images', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id')->index();
             $table->string('disk', 30)->index();
             $table->string('path'); // images/abc.jpg

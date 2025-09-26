@@ -19,7 +19,7 @@
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b45">
 				@foreach ($product->product_images as $image)
 					<div id='i3_{{ $image->id }}' class='b42'>
-						<img src ="{{ $image?->url() ?? '/images/camera1.png' }}" onclick="destroyProductImage('{{ route('product-images.destroy', $image->id) }}')" onmouseover="showProductImage('{{ route('show_product_image', $image->id) }}')">
+						<img src ="{{ $image?->url ?? '/images/camera1.png' }}" onclick="destroyProductImage('{{ route('product-images.destroy', $image->id) }}')" onmouseover="showProductImage('{{ route('show_product_image', $image->id) }}')">
 					</div>
 				@endforeach
 				<center><button type='button' class='btn btn-info' onclick="createProductImage({{ $product->id }}, '{{ route('product-images.store') }}')">Add</button></center>
@@ -27,9 +27,9 @@
 			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 b48">
 				<div id='i4' class='col-lg-4 col-md-12 col-sm-12 col-xs-12'>
 					@if ($product->product_images->first()?->isWideImage())
-						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}"></center>
+						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
 					@else
-						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}"></center>
+						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
 					@endif
 				</div>
 				<div class='col-lg-4 col-md-9 col-sm-8 col-xs-12'>
@@ -135,7 +135,7 @@
 					<p style="font-size: 20px;color: #C60; margin-top: 15px;">From the manufacturer</p>
 					@foreach ($product->product_manufacturer_images as $image)
 						<div class='b62'>
-							<img src ='{{ $image?->url() ?? '/images/camera1.png' }}'>
+							<img src ='{{ $image?->url ?? '/images/camera1.png' }}'>
 						</div>
 						<center><button type='button' class='btn btn-danger' style='margin: 10px;' onclick="destroyProductManufacturerImage('{{ route('product-manufacturer-images.destroy', $image->id) }}')">Delete</button></center>
 					@endforeach
@@ -191,7 +191,7 @@
 					</div>
 					<div class='b64'>
 						<div class='b68'>
-							<img src ="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}">
+							<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='b70'>
 							<p><b>This Item </b>{{ $product->name }}</p>

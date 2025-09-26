@@ -1,5 +1,5 @@
 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-	<center><img src="{{ auth()->user()->user_image?->url() ?? '/images/user.png' }}" alt='Profile Photo'></center>
+	<center><img src="{{ auth()->user()->user_image?->url ?? '/images/user.png' }}" alt='Profile Photo'></center>
 	<center>
 		<div class="btn-group-vertical">
 			<div class="dropdown">

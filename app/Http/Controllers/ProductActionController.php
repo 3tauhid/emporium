@@ -17,9 +17,9 @@ class ProductActionController extends Controller
         $productImage = ProductImage::find($productImageId);
 
         if ($productImage->isWideImage()) {
-            $content = "<center><img style='width: 100%;' src ='".$productImage->url()."'></center>";
+            $content = "<center><img style='width: 100%;' src ='".$productImage->url."'></center>";
         } else {
-            $content = "<center><img style='height: 300px; margin: 50px;' src ='".$productImage->url()."'></center>";
+            $content = "<center><img style='height: 300px; margin: 50px;' src ='".$productImage->url."'></center>";
         }
 
         return response()->json(['content'=> $content], 200);

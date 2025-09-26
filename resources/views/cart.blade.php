@@ -21,7 +21,7 @@
 				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b98'>
 					<div class='col-lg-9 col-md-9 col-sm-9 col-xs-9'>
 						<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2 b92'>
-							<img src ="{{ $cartItem->product_seller->product->product_images->first()?->url() ?? '/images/camera1.png' }}">
+							<img src ="{{ $cartItem->product_seller->product->product_images->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
 							<div class='b93'>

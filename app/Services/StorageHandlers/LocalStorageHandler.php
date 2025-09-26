@@ -15,9 +15,4 @@ class LocalStorageHandler
     {
         return response()->file('storage/app/' . $path);
     }
-
-    public static function url(int $id, string $routeName)
-    {
-        return route($routeName, $id);
-    }
 }

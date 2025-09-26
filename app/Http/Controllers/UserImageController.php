@@ -8,9 +8,9 @@ use App\Services\StorageHandlers\DynamicStorageHandler;
 
 class UserImageController extends Controller
 {
-    public function show($userImageId)
+    public function show($userImageUuid)
     {
-        $userImage = UserImage::find($userImageId);
+        $userImage = UserImage::where('uuid', $userImageUuid)->first();
 
         return DynamicStorageHandler::show($userImage);
     }
@@ -28,19 +28,15 @@ class UserImageController extends Controller
         if (isset($userImage->id)) {
             UserImage::where('user_id', auth()->id())
             ->update([
-                'disk' => 'local',
                 'path' => $uploadInfo['path'],
                 'original_name' => $uploadInfo['original_name']
             ]);
         } else {
             $userImage = UserImage::create([
                 'user_id' => auth()->id(),
-                'disk' => 'local',
                 'path' => $uploadInfo['path'],
                 'original_name' => $uploadInfo['original_name'],
             ]);
-
-            UserImage::where('id', $userImage->id)->update(['url' => DynamicStorageHandler::url($userImage, 'user-images.show')]);
         }
 
         session(['success_message' => $uploadInfo['original_name'] . ' has been uploaded.']);

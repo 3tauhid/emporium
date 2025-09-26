@@ -9,11 +9,6 @@ use App\Services\StorageHandlers\DynamicStorageHandler;
 class ProductImage extends Model
 {
     use SoftDeletes;
-    
-    public function url()
-    {
-        return DynamicStorageHandler::url($this);
-    }
 
     public function isWideImage()
     {

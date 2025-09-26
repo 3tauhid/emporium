@@ -30,21 +30,7 @@ class DynamicStorageHandler
         }
     }
 
-    // $routeName is for generating url. It will allow you to write access control logic in the route (controller).
-    public static function url($model, ?string $routeName = null)
-    {
-        if (self::exists($model)) {
-            if ($model->disk == 'local') {
-                return LocalStorageHandler::url($model->id, $routeName);
-            }
-    
-            if ($model->disk == 'public') {
-                return $model->url;
-            }
-        }
-    }
-
-    // don't use show for public files; instead use url()
+    // don't use show for public files; instead use url from model
     public static function show($model)
     {
         if (self::exists($model)) {

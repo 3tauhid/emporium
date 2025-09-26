@@ -12,7 +12,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 b103">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p4">
 						<div class='col-lg-3 col-md-3 col-sm-12 col-xs-12'>
-							<center><img src ="{{ $user->user_image?->url() ?? '/images/user.png' }}" alt='Profile Photo' style='margin-top: 27px;'></center>			
+							<center><img src ="{{ $user->user_image?->url ?? '/images/user.png' }}" alt='Profile Photo' style='margin-top: 27px;'></center>			
 							<center>
 								<div class='btn-group-vertical'>
 									<a type='button' href="{{ route('users.show', $user->id) }}" class='btn btn-primary b101'>Profile Info</a>

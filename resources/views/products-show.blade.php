@@ -8,7 +8,7 @@
 	}
 @endphp
 
-<x-app-layout seoTitle="{{ $product->name }}" seoDescription="{{ $product->description }}" seoImage="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}" seoKeywords="{{ $seoKeywords }}">
+<x-app-layout seoTitle="{{ $product->name }}" seoDescription="{{ $product->description }}" seoImage="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" seoKeywords="{{ $seoKeywords }}">
 	<x-slot name='css'>
 		<link href="{{ mix('/css/product-details.css')}}" type="text/css" rel="stylesheet">
     </x-slot>
@@ -29,16 +29,16 @@
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b45">
 				@foreach ($product->product_images as $element1)
 					<div id='i3_{{ $element1->id }}' class='b42'>
-						<img src ="{{ $element1?->url() ?? '/images/camera1.png' }}" onmouseover="showProductImage('{{ route('show_product_image', $element1->id) }}')">
+						<img src ="{{ $element1?->url ?? '/images/camera1.png' }}" onmouseover="showProductImage('{{ route('show_product_image', $element1->id) }}')">
 					</div>
 				@endforeach
 			</div>
 			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 				<div id='i4' class='col-lg-4 col-md-12 col-sm-12 col-xs-12'>
 					@if ($product->product_images->first()?->isWideImage())
-						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}"></center>
+						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
 					@else
-						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}"></center>
+						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
 					@endif
 				</div>
 				<div class='col-lg-4 col-md-9 col-sm-8 col-xs-12'>
@@ -124,7 +124,7 @@
 					<p style="font-size: 20px;color: #C60; margin-top: 15px;">From the manufacturer</p>
 					@foreach ($product->product_manufacturer_images as $image)
 						<div class='b62'>
-							<img src ='{{ $image?->url() ?? '/images/camera1.png' }} '>
+							<img src ='{{ $image?->url ?? '/images/camera1.png' }} '>
 						</div>
 					@endforeach
 				</div>
@@ -166,7 +166,7 @@
 					</div>
 					<div class='b64'>
 						<div class='b68'>
-							<img src ="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}">
+							<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='b70'>
 							<p><b>This Item </b>{{ $product->name }}</p>

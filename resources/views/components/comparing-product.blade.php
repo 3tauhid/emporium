@@ -1,6 +1,6 @@
 @isset($product->id)
 	<div class='b68'>
-		<img src ="{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}">
+		<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
 	</div>
 	<div class='b70'>
 		<p><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></p>

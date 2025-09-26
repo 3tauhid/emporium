@@ -161,13 +161,13 @@
 								@if ($product->product_images->first()?->isWideImage())
 									<a href="{{ route('products.show', $product->id) }}">
 										<div class='b26'>
-											<center><img src ='{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}' style='width: 100%'></center>
+											<center><img src ='{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}' style='width: 100%'></center>
 										</div>
 									</a>
 								@else
 									<a href="{{ route('products.show', $product->id) }}">
 										<div class='b26'>
-											<center><img src ='{{ $product->product_images->first()?->url() ?? '/images/camera1.png' }}' style='height: 100%'></center>
+											<center><img src ='{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}' style='height: 100%'></center>
 										</div>
 									</a>
 								@endif

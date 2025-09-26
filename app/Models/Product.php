@@ -109,11 +109,6 @@ class Product extends Model
         return $this->hasMany(ProductSeller::class);
     }
 
-    public function url()
-    {
-        return DynamicStorageHandler::url($this, 'product-images.show');
-    }
-
     public function getFileContents()
     {
         return DynamicStorageHandler::getFileContents($this);
