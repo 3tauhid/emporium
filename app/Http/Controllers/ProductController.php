@@ -23,7 +23,7 @@ class ProductController extends Controller
         $rootDepartments = Department::select('id', 'name')->where('parent_department_id', 0)->get();
 
         $products = Product::select('id', 'name', 'average_rating', 'total_reviews', 'department_id', 'price', 'stock')
-        ->with('department:id,name', 'product_images')
+        ->with('department:id,name', 'productImages')
         ->filter(request(['search', 'order-by', 'department', 'rating', 'minimum-price', 'maximum-price']))
         ->paginate(20)
         ->withQueryString();
@@ -77,10 +77,10 @@ class ProductController extends Controller
 
     public function show($productId)
     {
-        $product = Product::with('brand', 'user', 'product_images', 'product_summaries', 'product_manufacturer_images', 'department.comparing_features', 'comparing_values', 'comparing_products', 'product_faqs', 'product_reviews.user.user_image')->find($productId);
+        $product = Product::with('brand', 'user', 'productImages', 'productSummaries', 'productManufacturerImages', 'department.comparingFeatures', 'comparingValues', 'comparingProducts', 'productFaqs', 'productReviews.user.userImage')->find($productId);
         
-        $product->setRelation('main_seller_inventory', 
-            $product->product_sellers()->where('seller_id', $product->main_seller_id)->first()
+        $product->setRelation('mainSellerInventory', 
+            $product->productSellers()->where('seller_id', $product->main_seller_id)->first()
         );
 
         $parentDepartmentNames = DepartmentHelper::getParentDepartmentNames($product->department_id);
@@ -93,7 +93,7 @@ class ProductController extends Controller
 
     public function edit($productId)
     {
-        $product = Product::with('brand', 'user', 'product_images', 'product_summaries', 'product_manufacturer_images', 'department.comparing_features', 'comparing_values', 'comparing_products', 'product_faqs', 'product_reviews.user.user_image')->find($productId);
+        $product = Product::with('brand', 'user', 'productImages', 'productSummaries', 'productManufacturerImages', 'department.comparingFeatures', 'comparingValues', 'comparingProducts', 'productFaqs', 'productReviews.user.userImage')->find($productId);
         $parentDepartmentNames = DepartmentHelper::getParentDepartmentNames($product->department_id);
         $brands = Brand::orderBy('name')->get();
         $departments = Department::orderBy('name')->get();

@@ -93,7 +93,7 @@
 					</div>
 					<div class='b10' id='i14' onmouseover='showScroll(14)' onmouseout='hideScroll(14)' style='overflow: hidden;'>
 						@foreach ($gamingProducts as $product)
-							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
+							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
 						@endforeach
 					</div>
 					<div class='b11' onclick='scrollRight200(14)'>
@@ -114,7 +114,7 @@
 					</div>
 					<div class='b10' id='i15' onmouseover='showScroll(15)' onmouseout='hideScroll(15)' style='overflow: hidden;'>
 						@foreach ($watchProducts as $product)
-							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
+							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
 						@endforeach
 					</div>
 					<div class='b11' onclick='scrollRight200(15)'>
@@ -135,7 +135,7 @@
 					</div>
 					<div class='b10' id='i16' onmouseover='showScroll(16)' onmouseout='hideScroll(16)' style='overflow: hidden;'>
 						@foreach ($topTotalRatedProducts as $product)
-							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
+							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
 						@endforeach
 					</div>
 					<div class='b11' onclick='scrollRight200(16)'>
@@ -156,7 +156,7 @@
 					</div>
 					<div class='b10' id='i17' onmouseover='showScroll(17)' onmouseout='hideScroll(17)' style='overflow: hidden;'>
 						@foreach ($kitchenProducts as $product)
-							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
+							<a href="{{ route('products.show', $product->id) }}"><img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}" style='height: 200px;padding-left: 4px;padding-right: 4px;'></a>
 						@endforeach
 					</div>
 					<div class='b11' onclick='scrollRight200(17)'>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\ComparingFeature;
 
 class ComparingFeatureSeeder extends Seeder
@@ -14,6 +15,12 @@ class ComparingFeatureSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        ComparingFeature::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         ComparingFeature::create([
             'department_id' => 3,
             'name' => 'Item Model',

@@ -21,7 +21,7 @@ class User extends Authenticatable
     //     'password' => 'hashed',
     // ];
 
-    public function user_image()
+    public function userImage()
     {
         return $this->hasOne(UserImage::class);
     }

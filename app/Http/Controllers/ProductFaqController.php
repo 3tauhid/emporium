@@ -8,6 +8,11 @@ use App\Models\ProductFaq;
 
 class ProductFaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('seller')->only('store', 'destroy');
+    }
+
     public function index($productId)
     {
         $search = request('search');

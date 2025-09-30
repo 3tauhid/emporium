@@ -28,6 +28,7 @@ Route::get('/', HomepageController::class)->name('homepage');
 Route::resource('products', ProductController::class);
 Route::resource('orders', OrderController::class);
 Route::resource('user-images', UserImageController::class);
+Route::resource('products.faqs', ProductFaqController::class)->shallow();
 Route::resource('products.reviews', ProductReviewController::class)->shallow();
 Route::resource('products.sellers', ProductSellerController::class)->shallow();
 Route::resource('compaing-products', ComparingProductController::class);
@@ -50,7 +51,6 @@ Route::get('/show-product-image/{product_image}', [ProductActionController::clas
 
 Route::middleware('seller')->group(function () {
     Route::resource('comparing-values', ComparingValueController::class);
-    Route::resource('products.faqs', ProductFaqController::class)->shallow();
     Route::resource('product-manufacturer-images', ProductManufacturerImageController::class);
     Route::resource('products.summaries', ProductSummaryController::class)->shallow();
     Route::resource('seller-products', SellerProductController::class);

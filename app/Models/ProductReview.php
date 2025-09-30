@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductReview extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     
-    public function user_image()
+    public function userImage()
     {
         return $this->hasOne(UserImage::class, 'user_id', 'user_id');
     }

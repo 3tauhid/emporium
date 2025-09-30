@@ -8,7 +8,7 @@
 			</br>
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 				<div class='b101'>
-					<center><img src ="/images/camera1.png" alt='Update' style="background-image:url({{ $user->user_image?->url ?? '/images/user.png' }}); background-size: 100%;" onclick="createUserImage('{{ route('user-images.store') }}')"></center>
+					<center><img src ="/images/camera1.png" alt='Update' style="background-image:url({{ $user->userImage?->url ?? '/images/user.png' }}); background-size: 100%;" onclick="createUserImage('{{ route('user-images.store') }}')"></center>
 				</div>
 				<center>
 					<div class="btn-group-vertical">

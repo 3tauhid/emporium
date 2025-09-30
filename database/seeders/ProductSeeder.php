@@ -3,8 +3,16 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductSummary;
+use App\Models\ProductFaq;
+use App\Models\ProductReview;
+use App\Models\ProductSeller;
+use App\Models\User;
+use App\Models\ComparingValue;
+use App\Models\ProductManufacturerImage;
 
 class ProductSeeder extends Seeder
 {
@@ -15,1061 +23,1048 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
+        Schema::disableForeignKeyConstraints();
+        
+        Product::truncate();
+        ProductSeller::truncate();
+        ProductImage::truncate();
+        ProductManufacturerImage::truncate();
+        ProductSummary::truncate();
+        ProductFaq::truncate();
+        ProductReview::truncate();
+        ComparingValue::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
+        // Product
+        $product = Product::factory()->create([
             'main_seller_id' => 2,
-            'price' => 1099.99,
-            'average_rating' => 4.7,
-            'total_reviews' => 7,
-            'total_faqs' => 3,
             'department_id' => 3,
             'brand_id' => 1,
-            'stock' => 50,
             'name' => 'Acer Predator Helios 300 Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, Intel i7-9750H, GTX 1660 Ti 6GB, 16GB DDR4, 256GB PCIe NVMe SSD, Backlit Keyboard, PH315-52-78VL',
-            'description' => 'Acer Predator Helios 300 PH315-52-78VL Gaming Laptop comes with these high level specs: 9th Generation Intel Core i7-9750H 6-Core Processor 2.6GHz with Turbo Boost Technology up to 4.5GHz, 15.6 Full HD (1920 x 1080) widescreen LED-backlit IPS display, 144Hz Refresh Rate, 16:9 aspect ratio, 3ms Overdrive Response Time, 300nit Brightness, 72% NTSC, NVIDIA GeForce GTX 1660 Ti with 6GB of dedicated GDDR6 VRAM, 16GB DDR4 2666MHz Memory, 256GB PCIe NVMe SSD (2 x PCIe M.2 Slots | 1 Slot Available), 1 - Available Hard Drive Bay, Waves MaxxAudio sound technology, featuring MaxxBass, MaxxVolume, MaxxDialog and hyper-realistic 3D Audio using Waves Nx, Acer True Harmony Technology, Two Built-in Stereo Speakers, Acer Purified.Voice technology with two built-in microphones, Killer Double Shot Pro Wireless-AC 1550 802.11ac WiFi featuring 2x2 MU-MIMO technology (Dual-Band 2.4GHz and 5GHz), Killer Ethernet E2500 10/100/1000 Gigabit Ethernet LAN, Bluetooth 5.0, HD Webcam (1280 x 720) supporting Super High Dynamic Range (SHDR), 1 - USB 3.1 Type C Gen 2 port (up to 10 Gbps), 3 - USB 3.1 Gen 1 Ports (One with Power-off Charging), 1 - HDMI 2.0 Port with HDCP Support, 1 - Mini Display Port 1.4, Backlit Keyboard, Lithium Ion Battery, Up to 6-hours Battery Life, 5.07 lbs. | 2.3 kg (system unit only) (NH.Q5MAA.001)',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p44.jpg',
             'url' => '/storage/product-images/p44.jpg',
             'original_name' => 'p44.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p45.jpg',
             'url' => '/storage/product-images/p45.jpg',
             'original_name' => 'p45.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p46.jpg',
             'url' => '/storage/product-images/p46.jpg',
             'original_name' => 'p46.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p47.jpg',
             'url' => '/storage/product-images/p47.jpg',
             'original_name' => 'p47.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p48.jpg',
             'url' => '/storage/product-images/p48.jpg',
             'original_name' => 'p48.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 1,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p49.jpg',
             'url' => '/storage/product-images/p49.jpg',
             'original_name' => 'p49.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 2,
-            'price' => 399,
-            'average_rating' => 4,
-            'total_reviews' => 432,
-            'total_faqs' => 51,
-            'department_id' => 4,
-            'brand_id' => 7,
-            'stock' => 50,
-            'name' => 'Oculus Quest All-in-one VR Gaming Headset',
-            'description' => 'Oculus Quest is an all-in-one gaming system for virtual reality. No wires. No PC. Just set up with the Oculus mobile app, and you are free to explore VR from almost anywhere. Sensors inside the headset precisely track your movements and instantly translate them into VR, while helping you steer clear of nearby objects. And with Oculus Touch controllers, your hands are in the game, so you can see your every gesture and feel the power of every impact. Take VR gaming to the next level. And everywhere else. Setup requires an iPhone(iOS 10 or higher) or Android(6.0 Marshmallow or higher) smartphone, the Oculus App (free download), 802.11 b/g/n wireless Internet access, and an Oculus account.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m1.jpg',
+            'url' => '/storage/product-manufacturer-images/m1.jpg',
+            'original_name' => 'm1.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m2.jpg',
+            'url' => '/storage/product-manufacturer-images/m2.jpg',
+            'original_name' => 'm2.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
+            'department_id' => 4,
+            'brand_id' => 7,
+            'name' => 'Oculus Quest All-in-one VR Gaming Headset',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 2,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p11.jpg',
             'url' => '/storage/product-images/p11.jpg',
             'original_name' => 'p11.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 2,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p15.jpg',
             'url' => '/storage/product-images/p15.jpg',
             'original_name' => 'p15.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 2,
-            'price' => 17.98,
-            'average_rating' => 4,
-            'total_reviews' => 75,
-            'total_faqs' => 68,
-            'department_id' => 4,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'WIOR PS4 Wired Controller Dual Vibration Shock Game Handle USB Joystick Gamepad with 2M/79IN Cable for Playstation 4/PS4 Slim/PS4 Pro and PC(Windows 7/8 / 10) - Black',
-            'description' => 'Oculus Quest is an all-in-one gaming system for virtual reality. No wires. No PC. Just set up with the Oculus mobile app, and you are free to explore VR from almost anywhere. Sensors inside the headset precisely track your movements and instantly translate them into VR, while helping you steer clear of nearby objects. And with Oculus Touch controllers, your hands are in the game, so you can see your every gesture and feel the power of every impact. Take VR gaming to the next level. And everywhere else. Setup requires an iPhone(iOS 10 or higher) or Android(6.0 Marshmallow or higher) smartphone, the Oculus App (free download), 802.11 b/g/n wireless Internet access, and an Oculus account.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m3.jpg',
+            'url' => '/storage/product-manufacturer-images/m3.jpg',
+            'original_name' => 'm3.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m4.jpg',
+            'url' => '/storage/product-manufacturer-images/m4.jpg',
+            'original_name' => 'm4.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
+            'department_id' => 4,
+            'brand_id' => 6,
+            'name' => 'DualShock 4 Wireless Controller for PlayStation 4 Red Magma',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 3,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p12.jpg',
             'url' => '/storage/product-images/p12.jpg',
             'original_name' => 'p12.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 3,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p14.jpg',
             'url' => '/storage/product-images/p14.jpg',
             'original_name' => 'p14.jpg',
         ]);
-        ProductImage::create([
-            'product_id' => 3,
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p19.jpg',
-            'url' => '/storage/product-images/p19.jpg',
-            'original_name' => 'p19.jpg',
+            'path' => 'product-manufacturer-images/m5.jpg',
+            'url' => '/storage/product-manufacturer-images/m5.jpg',
+            'original_name' => 'm5.jpg',
         ]);
 
-        Product::create([
+        // Product
+        $product = Product::factory()->create([
             'main_seller_id' => 2,
-            'price' => 39.99,
-            'average_rating' => 4,
-            'total_reviews' => 455,
-            'total_faqs' => 71,
             'department_id' => 6,
-            'brand_id' => 9,
-            'stock' => 50,
+            'brand_id' => 6,
             'name' => 'Darksiders Genesis - PlayStation 4',
-            'description' => 'From the Dawn of creation, the Council has maintained the balance across existence. Carrying out their orders are the Horsemen, nephilim (powerful beings spawned from the unnatural Union of Angels and demons) who have pledged themselves to the Council and been granted immense power. However, this power came at a tragic cost: the Horsemen were ordered to use their newfound strength to wipe out the rest of their kind. What followed was a bloody battle on Eden where the Horsemen, obeying the will of the Council, annihilated the nephilim. Still reeling from the events on Eden, war and strife have been given a new assignment -- lucifer, the enigmatic and deceptive demon King, has been plotting to upset the balance by granting power to master demons throughout Hell. War and strife must hunt down these Masters, gather information, and ultimately fight their way through a tangled, demonic conspiracy that threatens to forever upset the balance and unravel all of creation. Darksiders: Genesis is an action/adventure that tears its way through hordes of demons, Angels, and everything in-between on its way to Hell and back with guns blazing and swords swinging. Genesis gives players their first look at the world of darkness before the events of the original game, as well as introduces the Horseman strife.',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 4,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p13.jpg',
             'url' => '/storage/product-images/p13.jpg',
             'original_name' => 'p13.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 4,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p16.jpg',
             'url' => '/storage/product-images/p16.jpg',
             'original_name' => 'p16.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 4,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p17.jpg',
             'url' => '/storage/product-images/p17.jpg',
             'original_name' => 'p17.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 4,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p18.jpg',
             'url' => '/storage/product-images/p18.jpg',
             'original_name' => 'p18.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 2,
-            'price' => 17.98,
-            'average_rating' => 4,
-            'total_reviews' => 124,
-            'total_faqs' => 65,
-            'department_id' => 4,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'WIOR PS4 Wired Controller Dual Vibration Shock Game Handle USB Joystick Gamepad with 2M/79IN Cable for Playstation 4/PS4 Slim/PS4 Pro and PC(Windows 7/8 / 10) - Black',
-            'description' => 'Oculus Quest is an all-in-one gaming system for virtual reality. No wires. No PC. Just set up with the Oculus mobile app, and you are free to explore VR from almost anywhere. Sensors inside the headset precisely track your movements and instantly translate them into VR, while helping you steer clear of nearby objects. And with Oculus Touch controllers, your hands are in the game, so you can see your every gesture and feel the power of every impact. Take VR gaming to the next level. And everywhere else. Setup requires an iPhone(iOS 10 or higher) or Android(6.0 Marshmallow or higher) smartphone, the Oculus App (free download), 802.11 b/g/n wireless Internet access, and an Oculus account.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m6.jpg',
+            'url' => '/storage/product-manufacturer-images/m6.jpg',
+            'original_name' => 'm6.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
+            'department_id' => 4,
+            'brand_id' => 6,
+            'name' => 'DualShock 4 Wireless Controller for PlayStation 4 - Jet Black',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 5,
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p14.jpg',
-            'url' => '/storage/product-images/p14.jpg',
-            'original_name' => 'p14.jpg',
+            'path' => 'product-images/p36.jpg',
+            'url' => '/storage/product-images/p36.jpg',
+            'original_name' => 'p36.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 5,
-            'disk' => 'public',
-            'path' => 'product-images/p12.jpg',
-            'url' => '/storage/product-images/p12.jpg',
-            'original_name' => 'p12.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 5,
-            'disk' => 'public',
-            'path' => 'product-images/p14.jpg',
-            'url' => '/storage/product-images/p14.jpg',
-            'original_name' => 'p14.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 5,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p19.jpg',
             'url' => '/storage/product-images/p19.jpg',
             'original_name' => 'p19.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 2,
-            'price' => 399,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 4,
-            'brand_id' => 7,
-            'stock' => 50,
-            'name' => 'Oculus Quest All-in-one VR Gaming Headset',
-            'description' => 'Oculus Quest is an all-in-one gaming system for virtual reality. No wires. No PC. Just set up with the Oculus mobile app, and you are free to explore VR from almost anywhere. Sensors inside the headset precisely track your movements and instantly translate them into VR, while helping you steer clear of nearby objects. And with Oculus Touch controllers, your hands are in the game, so you can see your every gesture and feel the power of every impact. Take VR gaming to the next level. And everywhere else. Setup requires an iPhone(iOS 10 or higher) or Android(6.0 Marshmallow or higher) smartphone, the Oculus App (free download), 802.11 b/g/n wireless Internet access, and an Oculus account.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m5.jpg',
+            'url' => '/storage/product-manufacturer-images/m5.jpg',
+            'original_name' => 'm5.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
+            'department_id' => 4,
+            'brand_id' => 7,
+            'name' => 'Oculus - Quest All-in-one VR Gaming Headset - 128GB - Black (Renewed)',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 6,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p15.jpg',
             'url' => '/storage/product-images/p15.jpg',
             'original_name' => 'p15.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 6,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p11.jpg',
             'url' => '/storage/product-images/p11.jpg',
             'original_name' => 'p11.jpg',
         ]);
-        ProductImage::create([
-            'product_id' => 6,
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p15.jpg',
-            'url' => '/storage/product-images/p15.jpg',
-            'original_name' => 'p15.jpg',
+            'path' => 'product-manufacturer-images/m3.jpg',
+            'url' => '/storage/product-manufacturer-images/m3.jpg',
+            'original_name' => 'm3.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m4.jpg',
+            'url' => '/storage/product-manufacturer-images/m4.jpg',
+            'original_name' => 'm4.jpg',
         ]);
 
-        Product::create([
+        // Product
+        $product = Product::factory()->create([
             'main_seller_id' => 2,
-            'price' => 39.99,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
             'department_id' => 6,
-            'brand_id' => 9,
-            'stock' => 50,
-            'name' => 'Darksiders Genesis - PlayStation 4',
-            'description' => 'From the Dawn of creation, the Council has maintained the balance across existence. Carrying out their orders are the Horsemen, nephilim (powerful beings spawned from the unnatural Union of Angels and demons) who have pledged themselves to the Council and been granted immense power. However, this power came at a tragic cost: the Horsemen were ordered to use their newfound strength to wipe out the rest of their kind. What followed was a bloody battle on Eden where the Horsemen, obeying the will of the Council, annihilated the nephilim. Still reeling from the events on Eden, war and strife have been given a new assignment -- lucifer, the enigmatic and deceptive demon King, has been plotting to upset the balance by granting power to master demons throughout Hell. War and strife must hunt down these Masters, gather information, and ultimately fight their way through a tangled, demonic conspiracy that threatens to forever upset the balance and unravel all of creation. Darksiders: Genesis is an action/adventure that tears its way through hordes of demons, Angels, and everything in-between on its way to Hell and back with guns blazing and swords swinging. Genesis gives players their first look at the world of darkness before the events of the original game, as well as introduces the Horseman strife.',
+            'brand_id' => 6,
+            'name' => 'Call of Duty: Modern Warfare - PlayStation 4',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 7,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p16.jpg',
             'url' => '/storage/product-images/p16.jpg',
             'original_name' => 'p16.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 7,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p17.jpg',
             'url' => '/storage/product-images/p17.jpg',
             'original_name' => 'p17.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 7,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p18.jpg',
             'url' => '/storage/product-images/p18.jpg',
             'original_name' => 'p18.jpg',
         ]);
 
-        Product::create([
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m6.jpg',
+            'url' => '/storage/product-manufacturer-images/m6.jpg',
+            'original_name' => 'm6.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'main_seller_id' => 2,
-            'price' => 39.99,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
             'department_id' => 6,
-            'brand_id' => 9,
-            'stock' => 50,
-            'name' => 'Darksiders Genesis - PlayStation 4',
-            'description' => 'From the Dawn of creation, the Council has maintained the balance across existence. Carrying out their orders are the Horsemen, nephilim (powerful beings spawned from the unnatural Union of Angels and demons) who have pledged themselves to the Council and been granted immense power. However, this power came at a tragic cost: the Horsemen were ordered to use their newfound strength to wipe out the rest of their kind. What followed was a bloody battle on Eden where the Horsemen, obeying the will of the Council, annihilated the nephilim. Still reeling from the events on Eden, war and strife have been given a new assignment -- lucifer, the enigmatic and deceptive demon King, has been plotting to upset the balance by granting power to master demons throughout Hell. War and strife must hunt down these Masters, gather information, and ultimately fight their way through a tangled, demonic conspiracy that threatens to forever upset the balance and unravel all of creation. Darksiders: Genesis is an action/adventure that tears its way through hordes of demons, Angels, and everything in-between on its way to Hell and back with guns blazing and swords swinging. Genesis gives players their first look at the world of darkness before the events of the original game, as well as introduces the Horseman strife.',
+            'brand_id' => 6,
+            'name' => 'The Witcher 3: Wild Hunt Complete Edition',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 8,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p17.jpg',
             'url' => '/storage/product-images/p17.jpg',
             'original_name' => 'p17.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 8,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p16.jpg',
             'url' => '/storage/product-images/p16.jpg',
             'original_name' => 'p16.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 8,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p18.jpg',
             'url' => '/storage/product-images/p18.jpg',
             'original_name' => 'p18.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 39.99,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m6.jpg',
+            'url' => '/storage/product-manufacturer-images/m6.jpg',
+            'original_name' => 'm6.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
             'department_id' => 6,
-            'brand_id' => 9,
-            'stock' => 50,
-            'name' => 'Darksiders Genesis - PlayStation 4',
-            'description' => 'From the Dawn of creation, the Council has maintained the balance across existence. Carrying out their orders are the Horsemen, nephilim (powerful beings spawned from the unnatural Union of Angels and demons) who have pledged themselves to the Council and been granted immense power. However, this power came at a tragic cost: the Horsemen were ordered to use their newfound strength to wipe out the rest of their kind. What followed was a bloody battle on Eden where the Horsemen, obeying the will of the Council, annihilated the nephilim. Still reeling from the events on Eden, war and strife have been given a new assignment -- lucifer, the enigmatic and deceptive demon King, has been plotting to upset the balance by granting power to master demons throughout Hell. War and strife must hunt down these Masters, gather information, and ultimately fight their way through a tangled, demonic conspiracy that threatens to forever upset the balance and unravel all of creation. Darksiders: Genesis is an action/adventure that tears its way through hordes of demons, Angels, and everything in-between on its way to Hell and back with guns blazing and swords swinging. Genesis gives players their first look at the world of darkness before the events of the original game, as well as introduces the Horseman strife.',
+            'brand_id' => 6,
+            'name' => 'Gears 5: Standard Edition – Xbox One',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 9,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p18.jpg',
             'url' => '/storage/product-images/p18.jpg',
             'original_name' => 'p18.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 9,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p16.jpg',
             'url' => '/storage/product-images/p16.jpg',
             'original_name' => 'p16.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 9,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p17.jpg',
             'url' => '/storage/product-images/p17.jpg',
             'original_name' => 'p17.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 399,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m6.jpg',
+            'url' => '/storage/product-manufacturer-images/m6.jpg',
+            'original_name' => 'm6.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
             'department_id' => 4,
             'brand_id' => 10,
-            'stock' => 50,
-            'name' => 'PlayStation 4',
-            'description' => 'Oculus Quest is an all-in-one gaming system for virtual reality. No wires. No PC. Just set up with the Oculus mobile app, and you are free to explore VR from almost anywhere. Sensors inside the headset precisely track your movements and instantly translate them into VR, while helping you steer clear of nearby objects. And with Oculus Touch controllers, your hands are in the game, so you can see your every gesture and feel the power of every impact. Take VR gaming to the next level. And everywhere else. Setup requires an iPhone(iOS 10 or higher) or Android(6.0 Marshmallow or higher) smartphone, the Oculus App (free download), 802.11 b/g/n wireless Internet access, and an Oculus account.',
+            'name' => '8BitDo Ultimate 2C Bluetooth Controller for Switch/Switch 2, Wireless Controller with 6-Axis Motion Control',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 10,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p19.jpg',
             'url' => '/storage/product-images/p19.jpg',
             'original_name' => 'p19.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 10,
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p12.jpg',
-            'url' => '/storage/product-images/p12.jpg',
-            'original_name' => 'p12.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 10,
-            'disk' => 'public',
-            'path' => 'product-images/p14.jpg',
-            'url' => '/storage/product-images/p14.jpg',
-            'original_name' => 'p14.jpg',
+            'path' => 'product-images/p36.jpg',
+            'url' => '/storage/product-images/p36.jpg',
+            'original_name' => 'p36.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 169,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m5.jpg',
+            'url' => '/storage/product-manufacturer-images/m5.jpg',
+            'original_name' => 'm5.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
             'department_id' => 8,
             'brand_id' => 2,
-            'stock' => 50,
-            'name' => 'Apple Watch Series 3 (GPS, 42mm) - Space Gray Aluminium Case with Black Sport Band',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+            'name' => 'Apple Watch SE (GPS, 40mm) - Space Gray Aluminum Case with Black Sport Band',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 11,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p20.jpg',
             'url' => '/storage/product-images/p20.jpg',
             'original_name' => 'p20.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 11,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p24.jpg',
             'url' => '/storage/product-images/p24.jpg',
             'original_name' => 'p24.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 11,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p25.jpg',
             'url' => '/storage/product-images/p25.jpg',
             'original_name' => 'p25.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 7,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'Electronic1 Electronic1',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m7.jpg',
+            'url' => '/storage/product-manufacturer-images/m7.jpg',
+            'original_name' => 'm7.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'main_seller_id' => 2,
+            'department_id' => 7,
+            'brand_id' => 5,
+            'name' => 'Sony WH-CH520 Wireless Headphones Bluetooth On-Ear Headset with Microphone and up to 50 Hours Battery Life with Quick Charging, Black',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 12,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p21.jpg',
             'url' => '/storage/product-images/p21.jpg',
             'original_name' => 'p21.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 12,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p22.jpg',
             'url' => '/storage/product-images/p22.jpg',
             'original_name' => 'p22.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 12,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p23.jpg',
             'url' => '/storage/product-images/p23.jpg',
             'original_name' => 'p23.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 7,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'Electronic1 Electronic2',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m8.jpg',
+            'url' => '/storage/product-manufacturer-images/m8.jpg',
+            'original_name' => 'm8.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m9.jpg',
+            'url' => '/storage/product-manufacturer-images/m9.jpg',
+            'original_name' => 'm9.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 7,
+            'brand_id' => 5,
+            'name' => 'Sony WH-CH520 Wireless Headphones Bluetooth On-Ear Headset with Microphone, Black',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 13,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p22.jpg',
             'url' => '/storage/product-images/p22.jpg',
             'original_name' => 'p22.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 13,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p21.jpg',
             'url' => '/storage/product-images/p21.jpg',
             'original_name' => 'p21.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 13,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p23.jpg',
             'url' => '/storage/product-images/p23.jpg',
             'original_name' => 'p23.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m8.jpg',
+            'url' => '/storage/product-manufacturer-images/m8.jpg',
+            'original_name' => 'm8.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m9.jpg',
+            'url' => '/storage/product-manufacturer-images/m9.jpg',
+            'original_name' => 'm9.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 7,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'Electronic1 Electronic3',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+            'brand_id' => 5,
+            'name' => 'Sony WH-CH520 Wireless Headphones Bluetooth, Black',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 14,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p23.jpg',
             'url' => '/storage/product-images/p23.jpg',
             'original_name' => 'p23.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 14,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p21.jpg',
             'url' => '/storage/product-images/p21.jpg',
             'original_name' => 'p21.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 14,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p22.jpg',
             'url' => '/storage/product-images/p22.jpg',
             'original_name' => 'p22.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 199,
-            'average_rating' => 4,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m8.jpg',
+            'url' => '/storage/product-manufacturer-images/m8.jpg',
+            'original_name' => 'm8.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m9.jpg',
+            'url' => '/storage/product-manufacturer-images/m9.jpg',
+            'original_name' => 'm9.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 8,
             'brand_id' => 2,
-            'stock' => 50,
-            'name' => 'Apple Watch Series 3 (GPS, 42mm) - Space Gray Aluminium Case with Black Sport Band',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+            'name' => 'Apple Watch Series SE 44mm Gold Aluminum (GPS+Cellular)',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 15,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p24.jpg',
             'url' => '/storage/product-images/p24.jpg',
             'original_name' => 'p24.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 15,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p20.jpg',
             'url' => '/storage/product-images/p20.jpg',
             'original_name' => 'p20.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 15,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p25.jpg',
             'url' => '/storage/product-images/p25.jpg',
             'original_name' => 'p25.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 159,
-            'average_rating' => 5,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m7.jpg',
+            'url' => '/storage/product-manufacturer-images/m7.jpg',
+            'original_name' => 'm7.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 8,
             'brand_id' => 2,
-            'stock' => 50,
-            'name' => 'Apple Watch Series 3 (GPS, 42mm) - Space Gray Aluminium Case with Black Sport Band',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+            'name' => 'Apple Watch SE (2nd Gen) [GPS 40mm] Smart Watch Starlight Aluminum Case & Starlight Sport Band',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 16,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p25.jpg',
             'url' => '/storage/product-images/p25.jpg',
             'original_name' => 'p25.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 16,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p20.jpg',
             'url' => '/storage/product-images/p20.jpg',
             'original_name' => 'p20.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 16,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p24.jpg',
             'url' => '/storage/product-images/p24.jpg',
             'original_name' => 'p24.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 7,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'Electronic4 Electronic4',
-            'description' => 'GLONASS, Galileo, and QZSS, Barometric altimeter, Optical heart sensor, Accelerometer and gyroscope, Ion-X strengthened glass, Composite back',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m7.jpg',
+            'url' => '/storage/product-manufacturer-images/m7.jpg',
+            'original_name' => 'm7.jpg',
         ]);
 
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 7,
+            'brand_id' => 8,
+            'name' => 'Beats Studio Buds - True Wireless Noise Cancelling Earbuds',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 17,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p26.jpg',
             'url' => '/storage/product-images/p26.jpg',
             'original_name' => 'p26.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 17,
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p28.jpg',
-            'url' => '/storage/product-images/p28.jpg',
-            'original_name' => 'p28.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 17,
-            'disk' => 'public',
-            'path' => 'product-images/p33.jpg',
-            'url' => '/storage/product-images/p33.jpg',
-            'original_name' => 'p33.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 17,
-            'disk' => 'public',
-            'path' => 'product-images/p34.jpg',
-            'url' => '/storage/product-images/p34.jpg',
-            'original_name' => 'p34.jpg',
+            'path' => 'product-images/p37.jpg',
+            'url' => '/storage/product-images/p37.jpg',
+            'original_name' => 'p37.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 35.99,
-            'average_rating' => 2,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m10.jpg',
+            'url' => '/storage/product-manufacturer-images/m10.jpg',
+            'original_name' => 'm10.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 7,
-            'brand_id' => 8,
-            'stock' => 50,
-            'name' => 'Vera Bradley Signature Cotton Lunch Bunch Lunch Bag',
-            'description' => 'Fall is officially here, and we could not be more excited! Between the changing colors, cooling weather and pumpkin-flavored everything, autumn may be one of our favorite seasons. And we have some fall fashioned to match the changing seasons with our iconic and colorful patterns. Our genuine Vera Bradley Signature Cotton Lunch Bunch is no exception to the rules of style, bringing you deluxe designs like only we can. Our machine washable Lunch Bunch Bag comes with a convenient carrying handle and wide zip closure for easy packing and use with an ID Window to ensure everyone knows these are your goodies. This lunch box and snack bag measures 9 inches high, 7.5 inches deep, and 4.25 inches wide and fits most standard sized frozen meal boxes, making it the perfect size to fit in your backpack or tote.',
+            'brand_id' => 9,
+            'name' => 'JBL Live Free 2 - True Wireless Noise Cancelling Earbuds',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 18,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p27.jpg',
             'url' => '/storage/product-images/p27.jpg',
             'original_name' => 'p27.jpg',
         ]);
         ProductImage::create([
-            'product_id' => 18,
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p30.jpg',
-            'url' => '/storage/product-images/p30.jpg',
-            'original_name' => 'p30.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 18,
-            'disk' => 'public',
-            'path' => 'product-images/p35.jpg',
-            'url' => '/storage/product-images/p35.jpg',
-            'original_name' => 'p35.jpg',
+            'path' => 'product-images/p38.jpg',
+            'url' => '/storage/product-images/p38.jpg',
+            'original_name' => 'p38.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 1,
-            'total_reviews' => 110,
-            'total_faqs' => 15,
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m10.jpg',
+            'url' => '/storage/product-manufacturer-images/m10.jpg',
+            'original_name' => 'm10.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
+            'brand_id' => 11,
+            'name' => 'Hamilton Beach Electric Vegetable Chopper & Mini Food Processor, 3-Cup, 350 Watts, for Dicing, Mincing, and Puree, Black (72850)',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 19,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p28.jpg',
             'url' => '/storage/product-images/p28.jpg',
             'original_name' => 'p28.jpg',
         ]);
-        ProductImage::create([
-            'product_id' => 19,
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
             'disk' => 'public',
-            'path' => 'product-images/p31.jpg',
-            'url' => '/storage/product-images/p31.jpg',
-            'original_name' => 'p31.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 19,
-            'disk' => 'public',
-            'path' => 'product-images/p32.jpg',
-            'url' => '/storage/product-images/p32.jpg',
-            'original_name' => 'p32.jpg',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 0,
-            'total_reviews' => 110,
-            'total_faqs' => 15,
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 11,
             'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
+            'name' => 'Ourokhome Manual Food Processor Vegetable Chopper, Portable Hand Pull String Garlic Mincer Onion Cutter for Veggies, Ginger, Fruits, Nuts, Herbs, etc., 900ml, Green',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 20,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p29.jpg',
             'url' => '/storage/product-images/p29.jpg',
             'original_name' => 'p29.jpg',
         ]);
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 13,
+            'name' => 'Cuisinart Chopper, Stainless Steel/Black, CTG-00-SCHP',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 20,
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-images/p30.jpg',
+            'url' => '/storage/product-images/p30.jpg',
+            'original_name' => 'p30.jpg',
+        ]);
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 11,
+            'name' => 'Hamilton Beach Stack & Snap Food Processor and Vegetable Chopper, BPA Free, Stainless Steel Blades, 12 Cup Bowl, 2-Speed 450 Watt Motor, Black (70725A)',
+        ]);
+
+        // ProductImage
+        ProductImage::create([
+           'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p31.jpg',
             'url' => '/storage/product-images/p31.jpg',
             'original_name' => 'p31.jpg',
         ]);
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 14,
+            'name' => 'Longmann Food Chopper, Vegetable Chopper, Onion Chopper, Garlic Chopper, Nuts Chopper - Hand Chopper',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 20,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p32.jpg',
             'url' => '/storage/product-images/p32.jpg',
             'original_name' => 'p32.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
         ]);
 
-        ProductImage::create([
-            'product_id' => 21,
-            'disk' => 'public',
-            'path' => 'product-images/p30.jpg',
-            'url' => '/storage/product-images/p30.jpg',
-            'original_name' => 'p30.jpg',
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 15,
+            'name' => 'OXO Good Grips Handheld Mandoline Slicer for Kitchen, Adjustable Vegetable Slicer',
         ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 21,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p33.jpg',
             'url' => '/storage/product-images/p33.jpg',
             'original_name' => 'p33.jpg',
         ]);
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 11,
+            'name' => 'Hamilton Beach Food Processor & Vegetable Chopper for Slicing, Shredding, Mincing, and Puree, 10 Cups + Easy Clean Bowl Scraper, Black and Stainless Steel (70730)',
+        ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 21,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p34.jpg',
             'url' => '/storage/product-images/p34.jpg',
             'original_name' => 'p34.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
         ]);
 
-        ProductImage::create([
-            'product_id' => 22,
-            'disk' => 'public',
-            'path' => 'product-images/p31.jpg',
-            'url' => '/storage/product-images/p31.jpg',
-            'original_name' => 'p31.jpg',
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 11,
+            'brand_id' => 16,
+            'name' => 'EASYSPEED Electric Garlic Chopper 1Cup, Mini USB Charging Wireless Food Processor with 304 Stainless Steel, 2 Sharp Blades, Portable Kitchen Meat Grinder for Onion, Garlic, Ginger, Baby Food',
         ]);
+
+        // ProductImage
         ProductImage::create([
-            'product_id' => 22,
-            'disk' => 'public',
-            'path' => 'product-images/p30.jpg',
-            'url' => '/storage/product-images/p30.jpg',
-            'original_name' => 'p30.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 22,
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p35.jpg',
             'url' => '/storage/product-images/p35.jpg',
             'original_name' => 'p35.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m11.jpg',
+            'url' => '/storage/product-manufacturer-images/m11.jpg',
+            'original_name' => 'm11.jpg',
         ]);
 
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p32.jpg',
-            'url' => '/storage/product-images/p32.jpg',
-            'original_name' => 'p32.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p45.jpg',
-            'url' => '/storage/product-images/p45.jpg',
-            'original_name' => 'p45.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p46.jpg',
-            'url' => '/storage/product-images/p46.jpg',
-            'original_name' => 'p46.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p47.jpg',
-            'url' => '/storage/product-images/p47.jpg',
-            'original_name' => 'p47.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p48.jpg',
-            'url' => '/storage/product-images/p48.jpg',
-            'original_name' => 'p48.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 23,
-            'disk' => 'public',
-            'path' => 'product-images/p49.jpg',
-            'url' => '/storage/product-images/p49.jpg',
-            'original_name' => 'p49.jpg',
-        ]);
-
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
-        ]);
-
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p33.jpg',
-            'url' => '/storage/product-images/p33.jpg',
-            'original_name' => 'p33.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p45.jpg',
-            'url' => '/storage/product-images/p45.jpg',
-            'original_name' => 'p45.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p46.jpg',
-            'url' => '/storage/product-images/p46.jpg',
-            'original_name' => 'p46.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p47.jpg',
-            'url' => '/storage/product-images/p47.jpg',
-            'original_name' => 'p47.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p48.jpg',
-            'url' => '/storage/product-images/p48.jpg',
-            'original_name' => 'p48.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 24,
-            'disk' => 'public',
-            'path' => 'product-images/p49.jpg',
-            'url' => '/storage/product-images/p49.jpg',
-            'original_name' => 'p49.jpg',
-        ]);
-
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
-        ]);
-
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p34.jpg',
-            'url' => '/storage/product-images/p34.jpg',
-            'original_name' => 'p34.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p45.jpg',
-            'url' => '/storage/product-images/p45.jpg',
-            'original_name' => 'p45.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p46.jpg',
-            'url' => '/storage/product-images/p46.jpg',
-            'original_name' => 'p46.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p47.jpg',
-            'url' => '/storage/product-images/p47.jpg',
-            'original_name' => 'p47.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p48.jpg',
-            'url' => '/storage/product-images/p48.jpg',
-            'original_name' => 'p48.jpg',
-        ]);
-        ProductImage::create([
-            'product_id' => 25,
-            'disk' => 'public',
-            'path' => 'product-images/p49.jpg',
-            'url' => '/storage/product-images/p49.jpg',
-            'original_name' => 'p49.jpg',
-        ]);
-
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 10,
-            'average_rating' => 3,
-            'total_reviews' => 512,
-            'total_faqs' => 63,
-            'department_id' => 11,
-            'brand_id' => 12,
-            'stock' => 50,
-            'name' => 'Vegetable Chopper',
-            'description' => 'The Fullstar Vegetable Chopper is a versatile all-in-one kitchen tool that is perfect for preparing salads, salsa, onions, garlic and more. It delivers fast, consistent results and sports an impressive 4-cup (1.2L) capacity. Its space-saving design eliminates the need for bulky equipment in small kitchens while its catch tray minimizes messes. The clear body lets you monitor progress as you cut up carrots, cucumbers, squash, zucchini and spices like ginger. Because it requires no electricity, the Fullstar Vegetable Chopper can be used anywhere.',
-        ]);
-
-        ProductImage::create([
-            'product_id' => 26,
-            'disk' => 'public',
-            'path' => 'product-images/p35.jpg',
-            'url' => '/storage/product-images/p35.jpg',
-            'original_name' => 'p35.jpg',
-        ]);
-
-        Product::create([
-            'main_seller_id' => 2,
-            'price' => 1590.99,
-            'average_rating' => 4,
-            'total_reviews' => 402,
-            'total_faqs' => 33,
-            'department_id' => 3,
-            'brand_id' => 2,
-            'stock' => 50,
-            'name' => 'Apple Predator Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, Intel i7-9750H, GTX 1660 Ti 6GB, 16GB DDR4',
-            'description' => 'Apple Predator PH315-52-78VL Gaming Laptop comes with these high level specs: 9th Generation Intel Core i7-9750H 6-Core Processor 2.6GHz with Turbo Boost Technology up to 4.5GHz, 15.6 Full HD (1920 x 1080) widescreen LED-backlit IPS display, 144Hz Refresh Rate, 16:9 aspect ratio, 3ms Overdrive Response Time, 300nit Brightness, 72% NTSC, NVIDIA GeForce GTX 1660 Ti with 6GB of dedicated GDDR6 VRAM, 16GB DDR4 2666MHz Memory, 256GB PCI webcam (1280 x 720) supporting Super High Dynamic Range (SHDR), 1 - USB 3.1 Type C Gen 2 port (up to 10 Gbps), 3 - USB 3.1 Gen 1 Ports (One with Power-off Charging), 1 - HDMI 2.0 Port with HDCP Support, 1 - Mini Display Port 1.4, Backlit Keyboard, Lithium Ion Battery, Up to 6-hours Battery Life, 5.07 lbs. | 2.3 kg (system unit only) (NH.Q5MAA.001)',
-        ]);
-
-        ProductImage::create([
-            'product_id' => 27,
-            'disk' => 'public',
-            'path' => 'product-images/p45.jpg',
-            'url' => '/storage/product-images/p45.jpg',
-            'original_name' => 'p45.jpg',
-        ]);
-
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 1190.99,
-            'average_rating' => 3,
-            'total_reviews' => 410,
-            'total_faqs' => 42,
+        // Product
+        $product = Product::factory()->create([
             'department_id' => 3,
             'brand_id' => 3,
-            'stock' => 50,
-            'name' => 'Predator Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, Intel i7-9750H, GTX 1660 Ti 6GB, 16GB DDR4',
-            'description' => 'Predator PH315-52-78VL Gaming Laptop comes with these high level specs: 9th Generation Intel Core i7-9750H 6-Core Processor 2.6GHz with Turbo Boost Technology up to 4.5GHz, 15.6 Full HD (1920 x 1080) widescreen LED-backlit IPS display, 144Hz Refresh Rate, 16:9 aspect ratio, 3ms Overdrive Response Time, 300nit Brightness, 72% NTSC, NVIDIA GeForce GTX 1660 Ti with 6GB of dedicated GDDR6 VRAM, 16GB DDR4 2666MHz Memory, 256GB PCI webcam (1280 x 720) supporting Super High Dynamic Range (SHDR), 1 - USB 3.1 Type C Gen 2 port (up to 10 Gbps), 3 - USB 3.1 Gen 1 Ports (One with Power-off Charging), 1 - HDMI 2.0 Port with HDCP Support, 1 - Mini Display Port 1.4, Backlit Keyboard, Lithium Ion Battery, Up to 6-hours Battery Life, 5.07 lbs. | 2.3 kg (system unit only) (NH.Q5MAA.001)',
+            'name' => 'Dell Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, GTX 1660 Ti 6GB, 16GB DDR4',
         ]);
 
+        // ProductImage
         ProductImage::create([
-            'product_id' => 28,
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-images/p45.jpg',
+            'url' => '/storage/product-images/p45.jpg',
+            'original_name' => 'p45.jpg',
+        ]);
+
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m1.jpg',
+            'url' => '/storage/product-manufacturer-images/m1.jpg',
+            'original_name' => 'm1.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m2.jpg',
+            'url' => '/storage/product-manufacturer-images/m2.jpg',
+            'original_name' => 'm2.jpg',
+        ]);
+
+        // Product
+        $product = Product::factory()->create([
+            'department_id' => 3,
+            'brand_id' => 4,
+            'name' => 'Asus Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, Intel i7-9750H, GTX 1660 Ti 6GB, 16GB DDR4',
+        ]);
+
+        // ProductImage
+        ProductImage::create([
+            'product_id' => $product->id,
             'disk' => 'public',
             'path' => 'product-images/p46.jpg',
             'url' => '/storage/product-images/p46.jpg',
             'original_name' => 'p46.jpg',
         ]);
 
-        Product::create([
-            'main_seller_id' => 4,
-            'price' => 1500,
-            'average_rating' => 4,
-            'total_reviews' => 412,
-            'total_faqs' => 33,
-            'department_id' => 3,
-            'brand_id' => 4,
-            'stock' => 50,
-            'name' => 'Gaming Laptop PC, 15.6 Full HD 144Hz 3ms IPS Display, Intel i7-9750H, GTX 1660 Ti 6GB, 16GB DDR4',
-            'description' => 'Predator PH315-52-78VL Gaming Laptop comes with these high level specs: 9th Generation Intel Core i7-9750H 6-Core Processor 2.6GHz with Turbo Boost Technology up to 4.5GHz, 15.6 Full HD (1920 x 1080) widescreen LED-backlit IPS display, 144Hz Refresh Rate, 16:9 aspect ratio, 3ms Overdrive Response Time, 300nit Brightness, 72% NTSC, NVIDIA GeForce GTX 1660 Ti with 6GB of dedicated GDDR6 VRAM, 16GB DDR4 2666MHz Memory, 256GB PCI webcam (1280 x 720) supporting Super High Dynamic Range (SHDR), 1 - USB 3.1 Type C Gen 2 port (up to 10 Gbps), 3 - USB 3.1 Gen 1 Ports (One with Power-off Charging), 1 - HDMI 2.0 Port with HDCP Support, 1 - Mini Display Port 1.4, Backlit Keyboard, Lithium Ion Battery, Up to 6-hours Battery Life, 5.07 lbs. | 2.3 kg (system unit only) (NH.Q5MAA.001)',
+        // ProductManufacturerImage
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m1.jpg',
+            'url' => '/storage/product-manufacturer-images/m1.jpg',
+            'original_name' => 'm1.jpg',
+        ]);
+        ProductManufacturerImage::create([
+            'product_id' => $product->id,
+            'disk' => 'public',
+            'path' => 'product-manufacturer-images/m2.jpg',
+            'url' => '/storage/product-manufacturer-images/m2.jpg',
+            'original_name' => 'm2.jpg',
         ]);
 
-        ProductImage::create([
-            'product_id' => 29,
-            'disk' => 'public',
-            'path' => 'product-images/p47.jpg',
-            'url' => '/storage/product-images/p47.jpg',
-            'original_name' => 'p47.jpg',
-        ]);
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            ProductSummary::factory(5)->create([
+                'product_id' => $product->id,
+            ]);
+
+            ProductFaq::factory(3)->create([
+                'product_id' => $product->id,
+            ]);
+
+            ProductReview::factory(5)->create([
+                'product_id' => $product->id,
+            ]);
+
+            ComparingValue::factory()->create([
+                'product_id' => $product->id,
+            ]);
+
+            $user = User::where('id', '!=', $product->main_seller_id)->seller()->first();
+
+            // ProductSeller is already created through ProductFactory. These are just extra sellers.
+            ProductSeller::factory()->create([
+                'product_id' => $product->id,
+                'seller_id' => $user->id,
+                'price' => $product->price,
+                'stock' => $product->stock,
+            ]);
+        }
+
+        // Product::factory(10)->hasProductSummaries(5)->hasProductFaqs(3)->hasProductReviews(5)->hasComparingProducts()->hasComparingValues()->create();
     }
 }

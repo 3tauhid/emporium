@@ -95,7 +95,7 @@ class ProductActionController extends Controller
 
         ComparingValue::where('product_id', $productId)->delete();
 
-        $comparingFeatures = ComparingFeature::where('department_id', [$departmentId])->get();
+        $comparingFeatures = ComparingFeature::where('department_id', $departmentId)->get();
 
         if (isset($comparingFeatures[0]->id)) {
             foreach ($comparingFeatures as $comparingFeature) {

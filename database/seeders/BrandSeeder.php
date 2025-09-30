@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Brand;
 
 class BrandSeeder extends Seeder
@@ -14,6 +15,12 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        Brand::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         Brand::create([
             'name' => 'Acer',
         ]);
@@ -27,28 +34,40 @@ class BrandSeeder extends Seeder
             'name' => 'Asus',
         ]);
         Brand::create([
-            'name' => 'Lenovo',
-        ]);
-        Brand::create([
-            'name' => 'Samsung',
-        ]);
-        Brand::create([
-            'name' => 'Oculus',
-        ]);
-        Brand::create([
-            'name' => 'WIOR',
-        ]);
-        Brand::create([
-            'name' => 'THQ Nordic',
+            'name' => 'Sony',
         ]);
         Brand::create([
             'name' => 'PlayStation',
         ]);
         Brand::create([
-            'name' => 'Vera Bradley',
+            'name' => 'Oculus',
         ]);
         Brand::create([
-            'name' => 'BAYCO',
+            'name' => 'Beats',
+        ]);
+        Brand::create([
+            'name' => 'JBL',
+        ]);
+        Brand::create([
+            'name' => '8BitDo',
+        ]);
+        Brand::create([
+            'name' => 'Hamilton Beach',
+        ]);
+        Brand::create([
+            'name' => 'Ourokhome',
+        ]);
+        Brand::create([
+            'name' => 'Cuisinart',
+        ]);
+        Brand::create([
+            'name' => 'Longmann',
+        ]);
+        Brand::create([
+            'name' => 'OXO',
+        ]);
+        Brand::create([
+            'name' => 'EasySpeed',
         ]);
     }
 }

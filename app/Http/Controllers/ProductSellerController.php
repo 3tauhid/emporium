@@ -15,7 +15,7 @@ class ProductSellerController extends Controller
 
     public function index($productId)
     {
-        $product = Product::with('brand', 'product_sellers.user', 'product_images')->find($productId);
+        $product = Product::with('brand', 'productSellers.user', 'productImages')->find($productId);
 
         return view('product-sellers', [
             'product' => $product,

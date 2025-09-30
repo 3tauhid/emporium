@@ -18,7 +18,7 @@
 				@endphp
 
 				@if ($page == 'edit')
-					<div class='b118' style="background: {{ $background }}"><li style='width: 250px;padding: 10px;' onclick="updateComparingProduct('{{ route('compaing-products.update', $mainProduct->comparing_products[0]->id) }}', {{ $product->id }}, '{{ route('main-products.comparing-slots.pages.products.show', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page, 'product' => $product->id]) }}', {{ $comparingSlot }})">{{ $product->name }}</li></div>
+					<div class='b118' style="background: {{ $background }}"><li style='width: 250px;padding: 10px;' onclick="updateComparingProduct('{{ route('compaing-products.update', $mainProduct->comparingProducts[0]->id) }}', {{ $product->id }}, '{{ route('main-products.comparing-slots.pages.products.show', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page, 'product' => $product->id]) }}', {{ $comparingSlot }})">{{ $product->name }}</li></div>
 				@else
 					<div class='b118' style="background: {{ $background }}"><li style='width: 250px;padding: 10px;' onclick="showComparingProduct('{{ route('main-products.comparing-slots.pages.products.show', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page, 'product' => $product->id]) }}', {{ $comparingSlot }})">{{ $product->name }}</li></div>
 				@endif

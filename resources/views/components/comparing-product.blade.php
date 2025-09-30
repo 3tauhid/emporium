@@ -1,6 +1,6 @@
 @isset($product->id)
 	<div class='b68'>
-		<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
+		<img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}">
 	</div>
 	<div class='b70'>
 		<p><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></p>
@@ -22,7 +22,7 @@
 	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 		<P>{{ $product->brand->name }}</p>
 	</div>
-	@foreach ($product->comparing_values as $element)
+	@foreach ($product->comparingValues as $element)
 		<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 			<P>{{ $element->value }}</p>
 		</div>
@@ -31,7 +31,7 @@
 	@if ($comparingSlot == 3)
 		<center><button type='button' class='btn btn-danger' onclick="insertAddItemButton('i21', {{ $comparingSlot }}, '{{ route('main-products.comparing-slots.pages.products.index', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page]) }}')">Delete</button></center>
 	@else
-		<center><button type='button' class='btn btn-danger' onclick="destroyComparingProduct({{ $comparingSlot }}, '{{ $page }}', '{{ route('compaing-products.destroy', $mainProduct->comparing_products[0]->id) }}', '{{ route('main-products.comparing-slots.pages.products.index', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page]) }}')">Delete</button></center>
+		<center><button type='button' class='btn btn-danger' onclick="destroyComparingProduct({{ $comparingSlot }}, '{{ $page }}', '{{ route('compaing-products.destroy', $mainProduct->comparingProducts[0]->id) }}', '{{ route('main-products.comparing-slots.pages.products.index', ['main_product' => $mainProduct->id, 'comparing_slot' => $comparingSlot, 'page' => $page]) }}')">Delete</button></center>
 	@endif
 @endisset
 @empty($product->id)

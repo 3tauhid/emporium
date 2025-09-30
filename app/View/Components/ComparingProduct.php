@@ -22,9 +22,9 @@ class ComparingProduct extends Component
     
     public function render()
     {
-        $product = Product::with('user', 'brand', 'comparing_values', 'product_images')->find($this->productId);
+        $product = Product::with('user', 'brand', 'comparingValues', 'productImages')->find($this->productId);
 
-        $mainProduct = Product::with(['comparing_products' => function($query) {
+        $mainProduct = Product::with(['comparingProducts' => function($query) {
             $query->where('slot', $this->comparingSlot);
         }])
         ->find($this->mainProductId);

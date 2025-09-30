@@ -9,7 +9,7 @@ class CartItem extends Model
 {
     use SoftDeletes;
     
-    public function product_seller()
+    public function productSeller()
     {
         return $this->belongsTo(ProductSeller::class);
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Department;
 
 class DepartmentSeeder extends Seeder
@@ -14,6 +15,12 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        Department::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         Department::create([
             'parent_department_id' => 0,
             'name' => 'Electronic',

@@ -10,18 +10,18 @@ class OrderActionController extends Controller
 {
     public function storeFromCart(Request $request)
     {
-        $cartItems = CartItem::with('product_seller.product', 'product_seller.user')->where('buyer_id', auth()->id())->get();
+        $cartItems = CartItem::with('productSeller.product', 'productSeller.user')->where('buyer_id', auth()->id())->get();
 
         foreach ($cartItems as $cartItem) {
-            $cartItem->product_seller->product->stock = $cartItem->product_seller->product->stock - $cartItem->quantity;
-            $cartItem->product_seller->stock = $cartItem->product_seller->stock - $cartItem->quantity;
-            $cartItem->product_seller->product->save();
-            $cartItem->product_seller->save();
+            $cartItem->productSeller->product->stock = $cartItem->productSeller->product->stock - $cartItem->quantity;
+            $cartItem->productSeller->stock = $cartItem->productSeller->stock - $cartItem->quantity;
+            $cartItem->productSeller->product->save();
+            $cartItem->productSeller->save();
 
             Order::create([
-                'seller_id' => $cartItem->product_seller->seller_id,
+                'seller_id' => $cartItem->productSeller->seller_id,
                 'buyer_id' => auth()->id(),
-                'name' => $cartItem->product_seller->product->name,
+                'name' => $cartItem->productSeller->product->name,
                 'status' => 'Processing',
             ]);
         }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\ComparingProduct;
 
 class ComparingProductSeeder extends Seeder
@@ -14,6 +15,12 @@ class ComparingProductSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        ComparingProduct::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         ComparingProduct::create([
             'main_product_id' => 1,
             'slot' => 1,
@@ -32,27 +39,17 @@ class ComparingProductSeeder extends Seeder
         ComparingProduct::create([
             'main_product_id' => 27,
             'slot' => 2,
-            'product_id' => 29,
+            'product_id' => 1,
         ]);
         ComparingProduct::create([
             'main_product_id' => 28,
             'slot' => 1,
-            'product_id' => 29,
-        ]);
-        ComparingProduct::create([
-            'main_product_id' => 28,
-            'slot' => 2,
-            'product_id' => 1,
-        ]);
-        ComparingProduct::create([
-            'main_product_id' => 29,
-            'slot' => 1,
-            'product_id' => 1,
-        ]);
-        ComparingProduct::create([
-            'main_product_id' => 29,
-            'slot' => 2,
             'product_id' => 27,
+        ]);
+        ComparingProduct::create([
+            'main_product_id' => 28,
+            'slot' => 2,
+            'product_id' => 1,
         ]);
         ComparingProduct::create([
             'main_product_id' => 2,
@@ -62,7 +59,7 @@ class ComparingProductSeeder extends Seeder
         ComparingProduct::create([
             'main_product_id' => 2,
             'slot' => 2,
-            'product_id' => 10,
+            'product_id' => 5,
         ]);
         ComparingProduct::create([
             'main_product_id' => 3,
@@ -102,7 +99,7 @@ class ComparingProductSeeder extends Seeder
         ComparingProduct::create([
             'main_product_id' => 6,
             'slot' => 2,
-            'product_id' => 10,
+            'product_id' => 5,
         ]);
         ComparingProduct::create([
             'main_product_id' => 7,
@@ -195,24 +192,34 @@ class ComparingProductSeeder extends Seeder
             'product_id' => 11,
         ]);
         ComparingProduct::create([
+            'main_product_id' => 16,
+            'slot' => 1,
+            'product_id' => 15,
+        ]);
+        ComparingProduct::create([
+            'main_product_id' => 16,
+            'slot' => 2,
+            'product_id' => 11,
+        ]);
+        ComparingProduct::create([
             'main_product_id' => 17,
             'slot' => 1,
+            'product_id' => 18,
+        ]);
+        ComparingProduct::create([
+            'main_product_id' => 17,
+            'slot' => 2,
             'product_id' => 13,
         ]);
         ComparingProduct::create([
-            'main_product_id' => 17,
-            'slot' => 2,
-            'product_id' => 14,
-        ]);
-        ComparingProduct::create([
             'main_product_id' => 18,
             'slot' => 1,
-            'product_id' => null,
+            'product_id' => 17,
         ]);
         ComparingProduct::create([
             'main_product_id' => 18,
             'slot' => 2,
-            'product_id' => null,
+            'product_id' => 13,
         ]);
         ComparingProduct::create([
             'main_product_id' => 19,

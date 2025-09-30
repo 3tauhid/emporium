@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedTinyInteger('user_role_id')->comment('1:Admin 2:Seller 3:Customer');
-            $table->string('phone', 50)->nullable();
-            $table->string('address', 50)->nullable();
+            $table->string('phone', 30)->nullable();
+            $table->string('address')->nullable();
             $table->unsignedTinyInteger('is_active');
             // $table->rememberToken();
             // $table->timestamp('email_verified_at')->nullable();

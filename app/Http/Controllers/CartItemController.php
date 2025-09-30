@@ -9,7 +9,7 @@ class CartItemController extends Controller
 {
     public function index()
     {
-        $cartItems = CartItem::with('product_seller.product.product_images', 'product_seller.user')->where('buyer_id', auth()->id())->get();
+        $cartItems = CartItem::with('productSeller.product.productImages', 'productSeller.user')->where('buyer_id', auth()->id())->get();
 
         return view('cart', [
             'cartItems' => $cartItems,

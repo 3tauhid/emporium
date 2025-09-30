@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function show($userId)
     {
-        $user = User::with('user_image')->find($userId);
+        $user = User::with('userImage')->find($userId);
 
         return view('admin-user-profile', [
             'user' => $user,

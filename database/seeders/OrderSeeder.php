@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Order;
 
 class OrderSeeder extends Seeder
@@ -14,6 +15,12 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        
+        Order::truncate();
+
+        Schema::enableForeignKeyConstraints();
+
         Order::create([
             'seller_id' => 2,
             'buyer_id' => 3,

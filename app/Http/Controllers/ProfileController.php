@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        $user = User::with('user_image')->find(auth()->id());
+        $user = User::with('userImage')->find(auth()->id());
         
         return view('profile', [
             'user' => $user,
@@ -18,7 +18,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $user = User::with('user_image')->find(auth()->id());
+        $user = User::with('userImage')->find(auth()->id());
 
         return view('profile-edit', [
             'user' => $user,

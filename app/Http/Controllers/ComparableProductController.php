@@ -11,7 +11,7 @@ class ComparableProductController extends Controller
 {
     public function index($mainProductId, $comparingSlot, $page)
     {
-        $mainProduct = Product::with(['comparing_products' => function($query) use ($comparingSlot) {
+        $mainProduct = Product::with(['comparingProducts' => function($query) use ($comparingSlot) {
             $query->where('slot', $comparingSlot);
         }])->find($mainProductId);
         $products = Product::select('id', 'name')->where('department_id', $mainProduct->department_id)->get();

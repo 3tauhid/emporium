@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,18 +17,13 @@ class DatabaseSeeder extends Seeder
             StorageProviderSeeder::class,
             UserSeeder::class,
             UserImageSeeder::class,
-            OrderSeeder::class,
-            DepartmentSeeder::class,
             BrandSeeder::class,
-            ProductSeeder::class,
-            ProductSellerSeeder::class,
-            ProductSummarySeeder::class,
-            ProductManufacturerImageSeeder::class,
+            DepartmentSeeder::class,
             ComparingFeatureSeeder::class,
-            ComparingValueSeeder::class,
-            ComparingProductSeeder::class,
-            ProductFaqSeeder::class,
-            ProductReviewSeeder::class,
+            ComparingProductSeeder::class, // ProductSeeder also creates ComparingProduct; so ComparingProduct::truncate() should be executed before it
+            ProductSeeder::class,
+            OrderSeeder::class,
+            CartItemSeeder::class,
         ]);
     }
 }

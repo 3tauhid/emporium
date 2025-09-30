@@ -14,7 +14,7 @@ class Department extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function comparing_features()
+    public function comparingFeatures()
     {
         return $this->hasMany(ComparingFeature::class);
     }

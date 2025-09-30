@@ -21,13 +21,13 @@
 				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b98'>
 					<div class='col-lg-9 col-md-9 col-sm-9 col-xs-9'>
 						<div class='col-lg-2 col-md-2 col-sm-2 col-xs-2 b92'>
-							<img src ="{{ $cartItem->product_seller->product->product_images->first()?->url ?? '/images/camera1.png' }}">
+							<img src ="{{ $cartItem->productSeller->product->productImages->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='col-lg-10 col-md-10 col-sm-10 col-xs-10'>
 							<div class='b93'>
-								<p style='font-size: 20px;'>{{ $cartItem->product_seller->product->name }}</p>
-								<p><b>Seller: </b><a>{{ $cartItem->product_seller->user->name }}</a></p>
-								<p><b>Shipped from: </b>{{ $cartItem->product_seller->shipping_location }}</p>
+								<p style='font-size: 20px;'>{{ $cartItem->productSeller->product->name }}</p>
+								<p><b>Seller: </b><a>{{ $cartItem->productSeller->user->name }}</a></p>
+								<p><b>Shipped from: </b>{{ $cartItem->productSeller->shipping_location }}</p>
 								<p><b>Qty: </b>{{ $cartItem->quantity }}</p>
 								<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 									<p style='float: left; font-size: 12px;margin-right: 10px;margin-top: 5px;border-left: 1px solid #ccc;border-right: 1px solid #ccc;padding-left: 10px;padding-right: 10px;'><a href='#' onclick="destroyFromCart('{{ route('cart-items.destroy', $cartItem->id) }}')">Delete</a></p>
@@ -36,11 +36,11 @@
 						</div>
 					</div>
 					<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-						<P style='color: #B12704;font-size: 17px;float: right;'><b>${{ $cartItem->product_seller->price * $cartItem->quantity }}</b></p>
+						<P style='color: #B12704;font-size: 17px;float: right;'><b>${{ $cartItem->productSeller->price * $cartItem->quantity }}</b></p>
 					</div>
 				</div>
 				@php
-					$total_price = $total_price + $cartItem->product_seller->price * $cartItem->quantity;
+					$total_price = $total_price + $cartItem->productSeller->price * $cartItem->quantity;
 					$total_items = $total_items + 1;
 				@endphp		
 			@endforeach

@@ -8,7 +8,7 @@
 	}
 @endphp
 
-<x-app-layout seoTitle="{{ $product->name }}" seoDescription="{{ $product->description }}" seoImage="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}" seoKeywords="{{ $seoKeywords }}">
+<x-app-layout seoTitle="{{ $product->name }}" seoDescription="{{ $product->description }}" seoImage="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}" seoKeywords="{{ $seoKeywords }}">
 	<x-slot name='css'>
 		<link href="{{ mix('/css/product-details.css')}}" type="text/css" rel="stylesheet">
     </x-slot>
@@ -27,7 +27,7 @@
 		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 b41">
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b45">
-				@foreach ($product->product_images as $element1)
+				@foreach ($product->productImages as $element1)
 					<div id='i3_{{ $element1->id }}' class='b42'>
 						<img src ="{{ $element1?->url ?? '/images/camera1.png' }}" onmouseover="showProductImage('{{ route('show_product_image', $element1->id) }}')">
 					</div>
@@ -35,10 +35,10 @@
 			</div>
 			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 				<div id='i4' class='col-lg-4 col-md-12 col-sm-12 col-xs-12'>
-					@if ($product->product_images->first()?->isWideImage())
-						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
+					@if ($product->productImages->first()?->isWideImage())
+						<center><img style='width: 100%;' src="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}"></center>
 					@else
-						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
+						<center><img style='height: 300px; margin: 50px;' src="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}"></center>
 					@endif
 				</div>
 				<div class='col-lg-4 col-md-9 col-sm-8 col-xs-12'>
@@ -63,8 +63,8 @@
 					
 					<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 						<ul style="margin-left: -25px;">
-							@foreach ($product->product_summaries as $product_summary)
-								<li>{{ $product_summary->description }}</li>
+							@foreach ($product->productSummaries as $productSummary)
+								<li>{{ $productSummary->description }}</li>
 							@endforeach
 						</ul>
 					</div>
@@ -86,11 +86,11 @@
 										<ul class='dropdown-menu' style='min-width: 65px;'>
 											@if ($product->stock > 5)
 												@for ($i=1; $i<6; $i++)
-													<li><button type='button' class='btn btn-primary btn-lg btn-block a4' onclick="updateArgumentForStoringCartItemInProductPage({{ $product->main_seller_inventory->id }}, {{ $i }}, '{{ route('cart-items.store') }}', '{{ route('orders.store') }}')">{{ $i }}</button></li>
+													<li><button type='button' class='btn btn-primary btn-lg btn-block a4' onclick="updateArgumentForStoringCartItemInProductPage({{ $product->mainSellerInventory->id }}, {{ $i }}, '{{ route('cart-items.store') }}', '{{ route('orders.store') }}')">{{ $i }}</button></li>
 												@endfor
 											@else
 												@for ($i=1; $i<$product->stock+1; $i++)
-													<li><button type='button' class='btn btn-primary btn-lg btn-block a4' onclick="updateArgumentForStoringCartItemInProductPage({{ $product->main_seller_inventory->id }}, {{ $i }}, '{{ route('cart-items.store') }}', '{{ route('orders.store') }}')">{{ $i }}</button></li>
+													<li><button type='button' class='btn btn-primary btn-lg btn-block a4' onclick="updateArgumentForStoringCartItemInProductPage({{ $product->mainSellerInventory->id }}, {{ $i }}, '{{ route('cart-items.store') }}', '{{ route('orders.store') }}')">{{ $i }}</button></li>
 												@endfor
 											@endif
 										</ul>
@@ -98,7 +98,7 @@
 							</ul>
 							
 							<div id='i10'>
-								<button type='button' class='btn btn-primary b55' onclick="storeCartItem({{ $product->main_seller_inventory->id }}, 1, '{{ route('cart-items.store') }}')">Add to Cart</button>
+								<button type='button' class='btn btn-primary b55' onclick="storeCartItem({{ $product->mainSellerInventory->id }}, 1, '{{ route('cart-items.store') }}')">Add to Cart</button>
 							</div>
 							<div id='i12'>
 								<button type='button' class='btn btn-primary b56' onclick="storeOrder({{ $product->id }}, 1, '{{ route('orders.store') }}')">Buy Now</button>
@@ -118,11 +118,11 @@
 				</div>
 			</div>
 		</div>
-		@if (isset($product->product_manufacturer_images[0]->id))
+		@if (isset($product->productManufacturerImages[0]->id))
 			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 				<div class='b59'>
 					<p style="font-size: 20px;color: #C60; margin-top: 15px;">From the manufacturer</p>
-					@foreach ($product->product_manufacturer_images as $image)
+					@foreach ($product->productManufacturerImages as $image)
 						<div class='b62'>
 							<img src ='{{ $image?->url ?? '/images/camera1.png' }} '>
 						</div>
@@ -156,8 +156,8 @@
 						<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 							<P>Brand Name</p>
 						</div>
-						@isset($product->department->comparing_features)
-							@foreach ($product->department->comparing_features as $element)
+						@isset($product->department->comparingFeatures)
+							@foreach ($product->department->comparingFeatures as $element)
 								<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 									<P>{{ $element->name }}</p>
 								</div>
@@ -166,7 +166,7 @@
 					</div>
 					<div class='b64'>
 						<div class='b68'>
-							<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
+							<img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='b70'>
 							<p><b>This Item </b>{{ $product->name }}</p>
@@ -188,7 +188,7 @@
 						<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72 b74'>
 							<P>{{ $product->brand->name ?? null }}</p>
 						</div>
-						@foreach ($product->comparing_values as $element)
+						@foreach ($product->comparingValues as $element)
 							<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72 b74'>
 								<P>{{ $element->value }}</p>
 							</div>
@@ -196,11 +196,11 @@
 					</div>
 					<div id='i19' class='b65'>
 						{{-- compare compare 1 --}}
-						<x-comparing-product :product-id="$product->comparing_products[0]->product_id" :main-product-id="$product->id" :comparing-slot="1" page="details" />
+						<x-comparing-product :product-id="$product->comparingProducts[0]->product_id" :main-product-id="$product->id" :comparing-slot="1" page="details" />
 					</div>
 					<div id='i20' class='b66'>
 						{{-- compare compare 2 --}}
-						<x-comparing-product :product-id="$product->comparing_products[1]->product_id" :main-product-id="$product->id" :comparing-slot="2" page="details" />
+						<x-comparing-product :product-id="$product->comparingProducts[1]->product_id" :main-product-id="$product->id" :comparing-slot="2" page="details" />
 					</div>
 					<div id='i21' class='b67'>
 						{{-- compare compare 3 --}}
@@ -217,7 +217,7 @@
 
 				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 					<div id='i23' class='b80'>
-						@include('partials._product-faq-items', ['productFaqs' => $product->product_faqs])
+						@include('partials._product-faq-items', ['productFaqs' => $product->productFaqs])
 					</div>
 				</div>
 			</div>
@@ -279,7 +279,7 @@
 					</ul>
 				</div>
 				<div id='i32'>
-					@include('partials._product-reviews', ['productReviews' => $product->product_reviews])
+					@include('partials._product-reviews', ['productReviews' => $product->productReviews])
 				</div>
 			</div>
 		</div>

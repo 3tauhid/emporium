@@ -42,15 +42,15 @@ class OrderController extends Controller
 
         $product = Product::find($productId);
         
-        $product->setRelation('main_seller_inventory', 
-            $product->product_sellers()->where('seller_id', $product->main_seller_id)->first()
+        $product->setRelation('mainSellerInventory', 
+            $product->productSellers()->where('seller_id', $product->main_seller_id)->first()
         );
 
         $product->stock = $product->stock - $quantity;
-        $product->main_seller_inventory->stock = $product->main_seller_inventory->stock - $quantity;
+        $product->mainSellerInventory->stock = $product->mainSellerInventory->stock - $quantity;
 
         $product->save();
-        $product->main_seller_inventory->save();
+        $product->mainSellerInventory->save();
 
         Order::create([
             'seller_id' => $product->main_seller_id,

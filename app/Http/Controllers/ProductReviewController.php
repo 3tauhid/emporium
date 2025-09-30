@@ -17,7 +17,7 @@ class ProductReviewController extends Controller
     {
         $sortingType = request('sortingType');
 
-        $reviewQuery = ProductReview::where('product_id', $productId)->with('user.user_image');
+        $reviewQuery = ProductReview::where('product_id', $productId)->with('user.userImage');
 
         if ($sortingType == 'Best') {
             $reviewQuery->orderBy('rating', 'desc');
@@ -48,7 +48,7 @@ class ProductReviewController extends Controller
 
         ProductReview::create([
             'product_id' => $productId,
-            'user_id' =>auth()->id(),
+            'user_id' => auth()->id(),
             'rating' => $rating,
             'description' => $description,
         ]);

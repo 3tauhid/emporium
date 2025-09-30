@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Services\DepartmentHelper;
 use App\Services\StorageHandlers\DynamicStorageHandler;
 
 class Product extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
     
     public function scopeFilter($query, array $filters)
     {
@@ -59,12 +60,12 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function comparing_features()
+    public function comparingFeatures()
     {
         return $this->hasMany(ComparingFeature::class, 'department_id', 'department_id');
     }
 
-    public function comparing_products()
+    public function comparingProducts()
     {
         return $this->hasMany(ComparingProduct::class, 'main_product_id');
     }
@@ -74,37 +75,37 @@ class Product extends Model
         return $this->belongsTo(User::class, 'main_seller_id');
     }
 
-    public function product_images()
+    public function productImages()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    public function product_summaries()
+    public function productSummaries()
     {
         return $this->hasMany(ProductSummary::class);
     }
 
-    public function product_manufacturer_images()
+    public function productManufacturerImages()
     {
         return $this->hasMany(ProductManufacturerImage::class);
     }
 
-    public function comparing_values()
+    public function comparingValues()
     {
         return $this->hasMany(ComparingValue::class);
     }
 
-    public function product_faqs()
+    public function productFaqs()
     {
         return $this->hasMany(ProductFaq::class);
     }
 
-    public function product_reviews()
+    public function productReviews()
     {
         return $this->hasMany(ProductReview::class)->orderBy('rating', 'desc');
     }
 
-    public function product_sellers()
+    public function productSellers()
     {
         return $this->hasMany(ProductSeller::class);
     }

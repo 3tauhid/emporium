@@ -158,16 +158,16 @@
 					<div id='i1'>
 						@foreach ($products as $product)	
 							<div class='col-lg-3 col-md-3 col-sm-6 col-xs-12'>
-								@if ($product->product_images->first()?->isWideImage())
+								@if ($product->productImages->first()?->isWideImage())
 									<a href="{{ route('products.show', $product->id) }}">
 										<div class='b26'>
-											<center><img src ='{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}' style='width: 100%'></center>
+											<center><img src ='{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}' style='width: 100%'></center>
 										</div>
 									</a>
 								@else
 									<a href="{{ route('products.show', $product->id) }}">
 										<div class='b26'>
-											<center><img src ='{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}' style='height: 100%'></center>
+											<center><img src ='{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}' style='height: 100%'></center>
 										</div>
 									</a>
 								@endif

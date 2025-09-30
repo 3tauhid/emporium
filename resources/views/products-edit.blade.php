@@ -17,7 +17,7 @@
 		
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 b41">
 			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b45">
-				@foreach ($product->product_images as $image)
+				@foreach ($product->productImages as $image)
 					<div id='i3_{{ $image->id }}' class='b42'>
 						<img src ="{{ $image?->url ?? '/images/camera1.png' }}" onclick="destroyProductImage('{{ route('product-images.destroy', $image->id) }}')" onmouseover="showProductImage('{{ route('show_product_image', $image->id) }}')">
 					</div>
@@ -26,10 +26,10 @@
 			</div>
 			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 b48">
 				<div id='i4' class='col-lg-4 col-md-12 col-sm-12 col-xs-12'>
-					@if ($product->product_images->first()?->isWideImage())
-						<center><img style='width: 100%;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
+					@if ($product->productImages->first()?->isWideImage())
+						<center><img style='width: 100%;' src="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}"></center>
 					@else
-						<center><img style='height: 300px; margin: 50px;' src="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}"></center>
+						<center><img style='height: 300px; margin: 50px;' src="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}"></center>
 					@endif
 				</div>
 				<div class='col-lg-4 col-md-9 col-sm-8 col-xs-12'>
@@ -75,16 +75,16 @@
 					
 					<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 						<ul style="margin-left: -25px;">
-							@foreach ($product->product_summaries as $summary)
-								<form action="{{ route('summaries.update', $summary->id) }}" method='post'>
+							@foreach ($product->productSummaries as $productSummary)
+								<form action="{{ route('summaries.update', $productSummary->id) }}" method='post'>
 									@csrf
 									@method('PUT')
 
 									<input type="hidden" name="product_id" value="{{ $product->id }}">
-									<textarea name='description' class='form-control' placeholder='Summary' style='height: 100px;width: 100%;'>{{ $summary->description }}</textarea>
+									<textarea name='description' class='form-control' placeholder='Summary' style='height: 100px;width: 100%;'>{{ $productSummary->description }}</textarea>
 									<center>
 										<button type='submit' class='btn btn-success' style='margin: 10px;'>Save</button>
-										<button type='button' class='btn btn-danger' style='margin: 10px;' onclick="destroyProductSummary('{{ route('summaries.destroy', $summary->id) }}')">Delete</button>
+										<button type='button' class='btn btn-danger' style='margin: 10px;' onclick="destroyProductSummary('{{ route('summaries.destroy', $productSummary->id) }}')">Delete</button>
 									</center>
 								</form>
 							@endforeach
@@ -129,11 +129,11 @@
 				</div>
 			</div>
 		</div>
-		@if (isset($product->product_manufacturer_images[0]->id))
+		@if (isset($product->productManufacturerImages[0]->id))
 			<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 				<div class='b59'>
 					<p style="font-size: 20px;color: #C60; margin-top: 15px;">From the manufacturer</p>
-					@foreach ($product->product_manufacturer_images as $image)
+					@foreach ($product->productManufacturerImages as $image)
 						<div class='b62'>
 							<img src ='{{ $image?->url ?? '/images/camera1.png' }}'>
 						</div>
@@ -183,7 +183,7 @@
 						<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 							<P>Brand Name</p>
 						</div>
-						@foreach ($product->comparing_features as $element)
+						@foreach ($product->comparingFeatures as $element)
 							<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72'>
 								<P>{{ $element->name }}</p>
 							</div>
@@ -191,7 +191,7 @@
 					</div>
 					<div class='b64'>
 						<div class='b68'>
-							<img src ="{{ $product->product_images->first()?->url ?? '/images/camera1.png' }}">
+							<img src ="{{ $product->productImages->first()?->url ?? '/images/camera1.png' }}">
 						</div>
 						<div class='b70'>
 							<p><b>This Item </b>{{ $product->name }}</p>
@@ -219,7 +219,7 @@
 							@csrf
 							@method('PUT')
 
-							@foreach ($product->comparing_values as $element)
+							@foreach ($product->comparingValues as $element)
 								<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b72 b74'>
 									<input type='text' name='values[{{ $element->id }}]' class='form-control b79' aria-describedby='basic-addon1' value='{{ $element->value }}' style='width: 100%;float: none;height: 30px;'>
 								</div>
@@ -229,11 +229,11 @@
 					</div>
 					<div id='i19' class='b65'>
 						{{-- compare compare 1 --}}
-						<x-comparing-product :main-product-id="$product->id" :comparing-slot="1" page="edit" :product-id="$product->comparing_products[0]->product_id" />
+						<x-comparing-product :main-product-id="$product->id" :comparing-slot="1" page="edit" :product-id="$product->comparingProducts[0]->product_id" />
 					</div>
 					<div id='i20' class='b66'>
 						{{-- compare compare 2 --}}
-						<x-comparing-product :main-product-id="$product->id" :comparing-slot="2" page="edit" :product-id="$product->comparing_products[1]->product_id" />
+						<x-comparing-product :main-product-id="$product->id" :comparing-slot="2" page="edit" :product-id="$product->comparingProducts[1]->product_id" />
 					</div>
 				</div>
 			</div>
@@ -244,7 +244,7 @@
 
 				<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
 					<div id='i23' class='b80'>
-						@foreach ($product->product_faqs as $faq)
+						@foreach ($product->productFaqs as $faq)
 							<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b83'>
 								<div class='col-lg-8 col-md-8 col-sm-8 col-xs-8 b82'>
 									<p><b>Qustion: {{ $faq->question }}</b></p>

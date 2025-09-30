@@ -1,7 +1,7 @@
 @foreach ($productReviews as $review)
 	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b87'>
 		<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 b88'>
-			<img src ="{{ $review->user->user_image?->url ?? '/images/user.png' }}">
+			<img src ="{{ $review->user->userImage?->url ?? '/images/user.png' }}">
 			<p>{{ $review->user->name }}</p>
 		</div>
 		<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
