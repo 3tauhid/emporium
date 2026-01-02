@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             DepartmentSeeder::class,
             ComparingFeatureSeeder::class,
-            ComparingProductSeeder::class, // ProductSeeder also creates ComparingProduct; so ComparingProduct::truncate() should be executed before it
             ProductSeeder::class,
+            ComparingProductSeeder::class, // ProductSeeder also creates ComparingProduct sometimes; so ComparingProduct::truncate() should be executed before it
             OrderSeeder::class,
             CartItemSeeder::class,
         ]);

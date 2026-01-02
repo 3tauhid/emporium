@@ -26,7 +26,7 @@ class UserImage extends Model
             }
 
             if (empty($model->url)) {
-                $model->url = route('user-images.show', $uuid);
+                $model->url = route('user-images.show', $uuid) . "?v=" . uniqid(); // "v" parameter is for Cache Busting
             }
         });
     }

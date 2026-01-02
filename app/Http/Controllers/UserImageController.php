@@ -29,6 +29,7 @@ class UserImageController extends Controller
             UserImage::where('user_id', auth()->id())
             ->update([
                 'path' => $uploadInfo['path'],
+                'url' => route('user-images.show', $userImage->uuid) . "?v=" . uniqid(), // "v" parameter is for Cache Busting
                 'original_name' => $uploadInfo['original_name']
             ]);
         } else {
