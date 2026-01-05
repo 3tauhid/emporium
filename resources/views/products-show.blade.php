@@ -196,11 +196,11 @@
 					</div>
 					<div id='i19' class='b65'>
 						{{-- compare compare 1 --}}
-						<x-comparing-product :product-id="$product->comparingProducts[0]->product_id" :main-product-id="$product->id" :comparing-slot="1" page="details" />
+						<x-comparing-product :product-id="$product->comparingProducts[0]->product_id ?? null" :main-product-id="$product->id" :comparing-slot="1" page="details" />
 					</div>
 					<div id='i20' class='b66'>
 						{{-- compare compare 2 --}}
-						<x-comparing-product :product-id="$product->comparingProducts[1]->product_id" :main-product-id="$product->id" :comparing-slot="2" page="details" />
+						<x-comparing-product :product-id="$product->comparingProducts[1]->product_id ?? null" :main-product-id="$product->id" :comparing-slot="2" page="details" />
 					</div>
 					<div id='i21' class='b67'>
 						{{-- compare compare 3 --}}

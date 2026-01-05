@@ -3,69 +3,47 @@
 namespace Tests\Feature\Auth;
 
 use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_reset_password_link_screen_can_be_rendered()
+    /**
+     * @test
+     * @return void
+     */
+    public function reset_password_screen_can_be_rendered()
     {
-        $response = $this->get('/forgot-password');
+        $user = User::factory()->create([
+            'is_active' => 1,
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get(route('reset_password'));
 
         $response->assertStatus(200);
     }
 
-    public function test_reset_password_link_can_be_requested()
+    /**
+     * @test
+     * @return void
+     */
+    public function password_can_be_reset()
     {
-        Notification::fake();
+        $user = User::factory()->create([
+            'is_active' => 1,
+        ]);
 
-        $user = User::factory()->create();
+        $this->actingAs($user);
 
-        $this->post('/forgot-password', ['email' => $user->email]);
+        $response = $this->post(route('reset_password'), [
+            'old_password' => 'password',
+            'new_password' => 'new-password',
+        ]);
 
-        Notification::assertSentTo($user, ResetPassword::class);
-    }
-
-    public function test_reset_password_screen_can_be_rendered()
-    {
-        Notification::fake();
-
-        $user = User::factory()->create();
-
-        $this->post('/forgot-password', ['email' => $user->email]);
-
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get('/reset-password/'.$notification->token);
-
-            $response->assertStatus(200);
-
-            return true;
-        });
-    }
-
-    public function test_password_can_be_reset_with_valid_token()
-    {
-        Notification::fake();
-
-        $user = User::factory()->create();
-
-        $this->post('/forgot-password', ['email' => $user->email]);
-
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
-            $response = $this->post('/reset-password', [
-                'token' => $notification->token,
-                'email' => $user->email,
-                'password' => 'password',
-                'password_confirmation' => 'password',
-            ]);
-
-            $response->assertSessionHasNoErrors();
-
-            return true;
-        });
+        $response->assertRedirect(route('profile.show'));
     }
 }

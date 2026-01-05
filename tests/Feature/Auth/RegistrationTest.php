@@ -10,20 +10,30 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_registration_screen_can_be_rendered()
+    /**
+     * @test
+     * @return void
+     */
+    public function registration_screen_can_be_rendered()
     {
-        $response = $this->get('/register');
+        $response = $this->get(route('register'));
 
         $response->assertStatus(200);
     }
 
-    public function test_new_users_can_register()
+    /**
+     * @test
+     * @return void
+     */
+    public function new_users_can_register()
     {
-        $response = $this->post('/register', [
+        $response = $this->post(route('register'), [
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',
-            'password_confirmation' => 'password',
+            'role' => 'Customer',
+            'phone' => '+123-123',
+            'address' => '123address',
         ]);
 
         $this->assertAuthenticated();

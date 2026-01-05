@@ -229,11 +229,11 @@
 					</div>
 					<div id='i19' class='b65'>
 						{{-- compare compare 1 --}}
-						<x-comparing-product :main-product-id="$product->id" :comparing-slot="1" page="edit" :product-id="$product->comparingProducts[0]->product_id" />
+						<x-comparing-product :main-product-id="$product->id" :comparing-slot="1" page="edit" :product-id="$product->comparingProducts[0]->product_id ?? null" />
 					</div>
 					<div id='i20' class='b66'>
 						{{-- compare compare 2 --}}
-						<x-comparing-product :main-product-id="$product->id" :comparing-slot="2" page="edit" :product-id="$product->comparingProducts[1]->product_id" />
+						<x-comparing-product :main-product-id="$product->id" :comparing-slot="2" page="edit" :product-id="$product->comparingProducts[1]->product_id ?? null" />
 					</div>
 				</div>
 			</div>
