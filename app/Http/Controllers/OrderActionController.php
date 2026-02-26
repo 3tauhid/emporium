@@ -41,6 +41,10 @@ class OrderActionController extends Controller
 
         $orderId = $request->input('orderId');
 
+        $order = Order::find($orderId);
+
+        $this->authorize('cancel', $order);
+
         Order::where('id', $orderId)->update(['status' => 'Canceled']);
 
         session(['success_message' => 'Successfully Order Canceled']);

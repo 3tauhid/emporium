@@ -20,6 +20,10 @@ class ComparingProductController extends Controller
 
         $productId = $request->input('productId');
 
+        $comparingProduct = ComparingProduct::with('mainProduct')->find($comparingProductId);
+
+        $this->authorize('update', $comparingProduct);
+
         ComparingProduct::where('id', $comparingProductId)->update(['product_id' => $productId]);
 
         return response()->json(['message'=> 'Successfully Updated'], 200);
@@ -27,6 +31,10 @@ class ComparingProductController extends Controller
 
     public function destroy($comparingProductId)
     {
+        $comparingProduct = ComparingProduct::with('mainProduct')->find($comparingProductId);
+
+        $this->authorize('update', $comparingProduct);
+        
         ComparingProduct::where('id', $comparingProductId)->update(['product_id' => null]);
 
         return response()->json(['message'=> 'Successfully Deleted'], 200);

@@ -80,7 +80,7 @@
 									@csrf
 									@method('PUT')
 
-									<input type="hidden" name="product_id" value="{{ $product->id }}">
+									{{-- <input type="hidden" name="product_id" value="{{ $product->id }}"> --}}
 									<textarea name='description' class='form-control' placeholder='Summary' style='height: 100px;width: 100%;'>{{ $productSummary->description }}</textarea>
 									<center>
 										<button type='submit' class='btn btn-success' style='margin: 10px;'>Save</button>
@@ -257,7 +257,6 @@
 							<div class='col-lg-8 col-md-8 col-sm-8 col-xs-8 b82'>
 								<form action="{{ route('products.faqs.store', $product->id) }}" method='post'>
 									@csrf
-									<input type="hidden" name="product_id" value="{{ $product->id }}">
 									<textarea name='question' class='form-control' placeholder='Question' style='height: 100px;width: 100%;'></textarea>
 									<textarea name='answer' class='form-control' placeholder='Answer' style='height: 100px;width: 100%;'></textarea>
 									<p><b></p>

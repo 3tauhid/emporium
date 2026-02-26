@@ -11,16 +11,15 @@
 				</ul>
 			</div>
 			
-			@if (auth()->user()->isAdmin())
+			@can('admin')
 				<a type="button" class="btn btn-primary b101" href='{{ route('users.index') }}'>Users</a>
-			@endif
-			@if (auth()->user()->isSeller())
+			@endcan
+			@can('seller')
 				<a type="button" class="btn btn-primary b101" href='{{ route('seller-products.index') }}'>Products</a>
+			@endcan
+			@canany(['seller', 'customer'])
 				<a type="button" class="btn btn-primary b101" href='{{ route('orders.index') }}'>Orders</a>
-			@endif
-			@if (auth()->user()->isCustomer())
-				<a type="button" class="btn btn-primary b101" href='{{ route('orders.index') }}'>Orders</a>
-			@endif
+			@endcanany
 		</div>
 	</center>
 </div>

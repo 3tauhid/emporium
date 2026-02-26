@@ -82,6 +82,10 @@ class ProductSellerController extends Controller
         $price = $request->input('price');
         $shippingLocation = $request->input('shipping_location');
 
+        $productSeller = ProductSeller::find($productSellerId);
+
+        $this->authorize('update', $productSeller);
+
         ProductSeller::where('id', $productSellerId)->update(['stock' => $stock, 'price' => $price, 'shipping_location' => $shippingLocation]);
 
         return redirect(route('seller-products.index'));

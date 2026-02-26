@@ -35,6 +35,10 @@ class ProductActionController extends Controller
         $productId = $request->input('product_id');
         $name = $request->input('name');
 
+        $product = Product::find($productId);
+
+        $this->authorize('update', $product);
+
         Product::where('id', $productId)->update(['name' => $name]);
 
         session(['success_message' => 'Successfully Updated']);
@@ -52,6 +56,10 @@ class ProductActionController extends Controller
         $productId = $request->input('productId');
         $brandId = $request->input('brandId');
 
+        $product = Product::find($productId);
+
+        $this->authorize('update', $product);
+
         Product::where('id', $productId)->update(['brand_id' => $brandId]);
 
         session(['success_message' => 'Successfully updated']);
@@ -68,6 +76,10 @@ class ProductActionController extends Controller
 
         $productId = $request->input('product_id');
         $name = $request->input('name');
+
+        $product = Product::find($productId);
+
+        $this->authorize('update', $product);
 
         $brand = Brand::create([
             'name' => $name,
@@ -89,6 +101,10 @@ class ProductActionController extends Controller
 
         $productId = $request->input('productId');
         $departmentId = $request->input('departmentId');
+
+        $product = Product::find($productId);
+
+        $this->authorize('update', $product);
 
         Product::where('id', $productId)->update(['department_id' => $departmentId]);
         ComparingProduct::where('main_product_id', $productId)->update(['product_id' => null]);
@@ -121,6 +137,10 @@ class ProductActionController extends Controller
 
         $productId = $request->input('product_id');
         $description = $request->input('description');
+
+        $product = Product::find($productId);
+
+        $this->authorize('update', $product);
 
         Product::where('id', $productId)->update(['description' => $description]);
 

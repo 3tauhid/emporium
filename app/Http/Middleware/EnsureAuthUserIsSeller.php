@@ -3,16 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Gate;
 
 class EnsureAuthUserIsSeller {
    public function handle($request, Closure $next)
    {
-      $user = auth()->user(); /** @var \App\Models\User $user */
-      
-      if (isset($user)) {
-         if ($user->isSeller() && $user->is_active != 0) {
-            return $next($request);
-         }
+      if (Gate::allows('seller')) {
+         return $next($request);
       }
 
       if ($request->expectsJson()) {

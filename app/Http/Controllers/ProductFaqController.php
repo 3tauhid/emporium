@@ -36,6 +36,10 @@ class ProductFaqController extends Controller
         $question = $request->input('question');
 	    $answer = $request->input('answer');
 
+        $product = Product::find($productId);
+
+        $this->authorize('create', [ProductFaq::class, $product]);
+
         ProductFaq::create([
             'product_id' => $productId,
             'question' => $question,
@@ -51,7 +55,9 @@ class ProductFaqController extends Controller
 
     public function destroy($productFaqId)
     {
-        $faq = ProductFaq::find($productFaqId);
+        $faq = ProductFaq::with('product')->find($productFaqId);
+
+        $this->authorize('delete', $faq);
         
         ProductFaq::where('id', $productFaqId)->delete();
 

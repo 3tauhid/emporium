@@ -3,16 +3,13 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Gate;
 
 class EnsureAuthUserIsAdmin {
    public function handle($request, Closure $next)
    {
-      $user = auth()->user(); /** @var \App\Models\User $user */
-      
-      if (isset($user)) {
-         if ($user->isAdmin()) {
-            return $next($request);
-         }
+      if (Gate::allows('admin')) {
+         return $next($request);
       }
 
       if ($request->expectsJson()) {

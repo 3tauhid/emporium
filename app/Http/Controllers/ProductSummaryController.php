@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductSummary;
+use App\Models\Product;
 
 class ProductSummaryController extends Controller
 {
     public function store(Request $request, $productId)
     {
+        $product = Product::find($productId);
+
+        $this->authorize('create', [ProductSummary::class, $product]);
+
         ProductSummary::create([
             'product_id' => $productId,
             'description' => 'New Description',
@@ -22,20 +27,26 @@ class ProductSummaryController extends Controller
     public function update(Request $request, $productSummaryId)
     {
         $request->validate([
-            'product_id' => ['required'],
             'description' => ['required', 'string', 'max:200'],
         ]);
 
-        $productId = $request->input('product_id');
         $description = $request->input('description');
+
+        $productSummary = ProductSummary::with('product')->find($productSummaryId);
+
+        $this->authorize('update', $productSummary);
 
         ProductSummary::where('id', $productSummaryId)->update(['description' => $description]);
 
-        return redirect(route('products.edit', $productId));
+        return redirect(route('products.edit', $productSummary->product->id));
     }
 
     public function destroy($productSummaryId)
     {
+        $productSummary = ProductSummary::with('product')->find($productSummaryId);
+
+        $this->authorize('delete', $productSummary);
+
         ProductSummary::where('id', $productSummaryId)->delete();
 
         session(['success_message' => 'Successfully Deleted']);

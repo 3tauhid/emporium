@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductManufacturerImage extends Model
 {
     use SoftDeletes;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

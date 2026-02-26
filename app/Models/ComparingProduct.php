@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ComparingProduct extends Model
 {
     use SoftDeletes;
+
+    public function mainProduct()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

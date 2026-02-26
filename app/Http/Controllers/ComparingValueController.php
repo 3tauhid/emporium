@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ComparingValue;
+use App\Models\Product;
 
 // This is a Singleton Resource Controller. But Laravel 8 does not support it.
 class ComparingValueController extends Controller
@@ -21,6 +22,10 @@ class ComparingValueController extends Controller
         );
 
         $values = $request->input('values');
+
+        $product = Product::find($productId);
+
+        $this->authorize('update', [ComparingValue::class, $product]);
 
         $comparingValues = ComparingValue::where('product_id', $productId)->get();
 

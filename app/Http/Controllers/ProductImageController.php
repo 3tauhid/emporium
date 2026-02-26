@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductImage;
+use App\Models\Product;
 use App\Services\StorageHandlers\DynamicStorageHandler;
 
 class ProductImageController extends Controller
@@ -15,6 +16,10 @@ class ProductImageController extends Controller
         ]);
 
         $productId = $request->input('productId');
+
+        $product = Product::find($productId);
+
+        $this->authorize('create', [ProductImage::class, $product]);
 
         $uploadInfo = DynamicStorageHandler::store($request->file('image'), 'product-images', 'public');
         
@@ -33,7 +38,10 @@ class ProductImageController extends Controller
 
     public function destroy($productImageId)
     {
-        $productImage = ProductImage::find($productImageId);
+        $productImage = ProductImage::with('product')->find($productImageId);
+
+        $this->authorize('delete', $productImage);
+
         $productImageStats = ProductImage::selectRaw('COUNT(*) as productImageCount')->where('product_id', $productImage->product_id)->first();
 
         if ($productImageStats->productImageCount > 1) {

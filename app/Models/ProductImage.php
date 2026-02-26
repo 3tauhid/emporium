@@ -10,6 +10,11 @@ class ProductImage extends Model
 {
     use SoftDeletes;
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
     public function isWideImage()
     {
         $image = DynamicStorageHandler::getFileContents($this);

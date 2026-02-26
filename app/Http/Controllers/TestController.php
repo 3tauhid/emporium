@@ -27,9 +27,11 @@ class TestController extends Controller
 {
     public function test1()
     {
-        $productId = 1;
+        $productSummaryId = 1;
 
-        // return response()->json($userImage);
+        $productSummary = ProductSummary::with('product')->find($productSummaryId);
+
+        return response()->json($productSummary);
     }
     public function test2()
     {

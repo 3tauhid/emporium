@@ -37,6 +37,10 @@ class CartItemController extends Controller
 
     public function destroy($cartItemId)
     {
+        $cartItem = CartItem::find($cartItemId);
+
+        $this->authorize('delete', $cartItem);
+
         CartItem::where('id', $cartItemId)->delete();
 
         session(['success_message' => 'Successfully Deleted']);
