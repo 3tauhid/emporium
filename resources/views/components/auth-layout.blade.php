@@ -39,10 +39,10 @@
 
             {{ $slot }}
             
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex;justify-content: center;">
 				<div class='b37' style="margin-top: 30px;">
-					<p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px;"><a style="padding-left: 29%;" href="#">Conditions of Use</a><a style="margin-left: 30px;margin-right: 30px;" href="#">Privacy Notice</a><a href="#">Help</a></p>
-					<p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px; margin-left: 29%;">© 2019-2020, Emporium.com, Inc. or its affiliates</p>
+					<p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px;"><a href="#">Conditions of Use</a><a style="margin-left: 30px;margin-right: 30px;" href="#">Privacy Notice</a><a href="#">Help</a></p>
+					<p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px;">© 2019-2020, Emporium.com, Inc. or its affiliates</p>
 				</div>
 			</div>
         </div>

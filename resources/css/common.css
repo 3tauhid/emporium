@@ -45,7 +45,7 @@
 .container.area3{
 	width: 100%;
 	background-color: #fff;
-	min-height: 500px;
+	min-height: calc(100vh - 339px);
 }
 .a1 img {
 	text-align: left;

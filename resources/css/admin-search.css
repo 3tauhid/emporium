@@ -39,7 +39,11 @@
     background-color: #fff;
     border-color: #E3E9E3;
 }
-.b107 h1{
+.b107 {
+	padding-left: 15px;
+  	padding-right: 15px;
+}
+.b107 h1 {
 	text-align: left;
 }
 .b108 {
@@ -49,8 +53,7 @@
 
     border: 1px solid #428bca;
 	padding: 15px;
-	width: 95%;
-
+	/* width: 95%; */
 }
 .b110 {
 	border-top: 1px solid #B4B2AF;

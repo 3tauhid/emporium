@@ -24,6 +24,8 @@ p {
 }
 .b100 {
 	margin-top: 100px;
+	padding-left: 15px;
+  	padding-right: 15px;
 }
 .b100 h1{
 	text-align: left;

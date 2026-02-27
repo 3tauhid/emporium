@@ -1,5 +1,6 @@
 .b102 {
-	width: 70%;
+	padding-left: 15px;
+  	padding-right: 15px;
 }
 .b102 h1{
 	text-align: left;
@@ -7,6 +8,8 @@
 .b103 {
 
     border: 1px solid #428bca;
+	padding-left: 15px;
+  	padding-right: 15px;
 }
 .b115 h2{
 	color: #C8D9E5;
@@ -15,7 +18,7 @@
 }
 .b115 h3{
 	color: #393939;
-	text-align: center;
+	/* text-align: center; */
 	font-size: 16px;
 }
 .b115 p{

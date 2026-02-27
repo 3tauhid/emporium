@@ -3,7 +3,7 @@
         <link href="{{ mix('/css/registration.css')}}" type="text/css" rel="stylesheet">
     </x-slot>
 
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex;justify-content: center;">
 		<div class='b30'>
 			<div class='b31'>
 				<p style="font-size: 30px;">Sign-Up</p>
@@ -68,9 +68,9 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: flex;justify-content: center;">
 		<div class='b35'>
-			<p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px;">------------------------- Already have an account? -------------------------</p>
+			<center><p style="padding-top: 20px;padding-bottom: 10px;color: #767676; font-size: 12px;">------------------------- Already have an account? -------------------------</p></center>
 			<a type="button" class="btn btn-primary b36" href="{{ route('signin') }}">Sign In</a>
 		</div>
 	</div>

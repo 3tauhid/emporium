@@ -41,7 +41,8 @@
     border-color: #E3E9E3;
 }
 .b102 {
-	width: 70%;
+	padding-left: 15px;
+  	padding-right: 15px;
 }
 .b102 h1{
 	text-align: left;
