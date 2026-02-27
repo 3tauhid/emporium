@@ -13,11 +13,11 @@ class ProductFaqPolicy
 
     public function create(User $user, Product $product)
     {
-        return $user->id === $product->main_seller_id;
+        return $user->id == $product->main_seller_id;
     }
 
     public function delete(User $user, ProductFaq $productFaq)
     {
-        return $user->id === $productFaq->product->main_seller_id;
+        return $user->id == $productFaq->product->main_seller_id;
     }
 }

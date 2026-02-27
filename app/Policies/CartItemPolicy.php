@@ -12,6 +12,6 @@ class CartItemPolicy
 
     public function delete(User $user, CartItem $cartItem)
     {
-        return $user->id === $cartItem->buyer_id;
+        return $user->id == $cartItem->buyer_id;
     }
 }

@@ -12,6 +12,6 @@ class ProductSellerPolicy
 
     public function update(User $user, ProductSeller $productSeller)
     {
-        return $user->id === $productSeller->seller_id;
+        return $user->id == $productSeller->seller_id;
     }
 }

@@ -13,11 +13,11 @@ class OrderPolicy
     public function cancel(User $user, Order $order)
     {
         if ($user->isCustomer()) {
-            return $user->id === $order->buyer_id;
+            return $user->id == $order->buyer_id;
         }
 
         if ($user->isSeller()) {
-            return $user->id === $order->seller_id;
+            return $user->id == $order->seller_id;
         }
     }
 }

@@ -13,11 +13,11 @@ class ProductImagePolicy
 
     public function create(User $user, Product $product)
     {
-        return $user->id === $product->main_seller_id;
+        return $user->id == $product->main_seller_id;
     }
 
     public function delete(User $user, ProductImage $productImage)
     {
-        return $user->id === $productImage->product->main_seller_id;
+        return $user->id == $productImage->product->main_seller_id;
     }
 }

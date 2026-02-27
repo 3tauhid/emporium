@@ -12,11 +12,11 @@ class ComparingProductPolicy
 
     public function update(User $user, ComparingProduct $comparingProduct)
     {
-        return $user->id === $comparingProduct->mainProduct->main_seller_id;
+        return $user->id == $comparingProduct->mainProduct->main_seller_id;
     }
 
     public function delete(User $user, ComparingProduct $comparingProduct)
     {
-        return $user->id === $comparingProduct->mainProduct->main_seller_id;
+        return $user->id == $comparingProduct->mainProduct->main_seller_id;
     }
 }

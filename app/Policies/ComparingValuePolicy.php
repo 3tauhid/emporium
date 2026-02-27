@@ -13,6 +13,6 @@ class ComparingValuePolicy
 
     public function update(User $user, Product $product)
     {
-        return $user->id === $product->main_seller_id;
+        return $user->id == $product->main_seller_id;
     }
 }
