@@ -22,7 +22,7 @@ class ProductSellerActionController extends Controller
         $price = $request->input('price');
         $shippingLocation = $request->input('shipping_location');
 
-        Product::where('id', $productId)->update(['stock' => $stock, 'price' => $price]); // delete this info from products table
+        Product::where('id', $productId)->update(['stock' => $stock, 'price' => $price]);
         ProductSeller::where('seller_id', auth()->id())->where('product_id', $productId)->update(['stock' => $stock, 'price' => $price, 'shipping_location' => $shippingLocation]);
 
         session(['success_message' => 'Successfully Updated']);

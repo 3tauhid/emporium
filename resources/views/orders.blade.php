@@ -29,7 +29,7 @@
 					@foreach ($orders as $order)
 						<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' style='border-top: 1px solid #aaa;'>
 							<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12 b116'>
-								<p>{{ $order->created_at }}</p>
+								<p class="utc-datetime">{{ $order->created_at }}</p>
 							</div>
 							<div class='col-lg-4 col-md-4 col-sm-12 col-xs-12 b116'>
 								<p><a href=''>{{ $order->name }}</a></p>

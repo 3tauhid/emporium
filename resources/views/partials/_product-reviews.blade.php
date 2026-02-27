@@ -61,7 +61,7 @@
 					</p>
 				@endif
 			</div>
-			<p><span class="utc-datetime">{{ $review->created_at }}</span></p>
+			<p class="utc-datetime">{{ $review->created_at }}</p>
 			<p style='max-width: 850px;text-align: justify;'>{{ $review->description }}</p>
 		</div>
 	</div>
